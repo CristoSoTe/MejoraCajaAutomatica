@@ -20,6 +20,10 @@ class VentanaApp:
 		self.frames = {}
 		self.photoSube=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaSube.png")
 		self.photoBaja=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaBaja.png")
+		self.valor1=1; self.valor2=2; self.valor3=3; self.valor4=4;
+		self.valor5=5; self.valor6=6; self.valor7=7; self.valor8=8;
+		self.valor9=9
+
 
 
 		self.rangos = ["RANGO 1", "RANGO 2", "RANGO 3", "RANGO 4", "RANGO 5", "RANGO 6", "RANGO 7", "RANGO 8", "RANGO 9", "CIERRE", "TOTAL"]
@@ -28,7 +32,7 @@ class VentanaApp:
 		"liquidacion_liqui6", "liquidacion_liqui7","liquidacion_liqui8", "liquidacion_liqui9", "liquidacion_liqui_cierre", "liquidacion_liqui_total"]
 
 		self.etiquetas_premios = ["PRECIO", "DEL", "IMPRESOS", "RECAUDADO", "PREMIO LINEA", "PRIMA", "VENDIDOS", "AL", "INFORMATICOS","CAJA IMPRESOS", "PREMIO BINGO", "PRIMA EXTRA"]
-
+		self.valores = [self.valor1, self.valor2, self.valor3, self.valor4, self.valor5, self.valor6, self.valor7, self.valor8, self.valor9]
 		for i in range(5):
 			identificador = f"Frame{i+1}"
 			frame = tk.Frame(self.root)
@@ -39,8 +43,8 @@ class VentanaApp:
 
 			if identificador == "Frame1":
 				for i in range(11):
-
 					frame.grid_columnconfigure(i, weight=1)
+
 				for i, rango in enumerate(self.rangos): 
 					etiqueta=tk.Label(frame, text = rango, font=("Times New Roman",20,"bold"))
 					etiqueta.grid(row = 0, column = i, sticky = "ew")
@@ -126,19 +130,9 @@ class VentanaApp:
 
 			if identificador == "Frame5":
 				numero_rango = 0
-
-				def botones_frame_inferior():
-					for i in range(3):
-						identificador = f"boton{i+1}"
-						boton = tk.Button(frame,cursor="hand2")
-						boton.pack(padx=10, pady=5 )
-						self.frames[identificador] = boton
-						if identificador == "boton1":
-							boton.config(image=self.photoSube)
-						elif identificador == "boton2":
-							boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
-						else:
-							boton.config(image=self.photoBaja)
+				valor_actual = 0
+				
+				
 
 				for i in range(11):
 					identificador = f"Frame{i+1}"
@@ -158,34 +152,44 @@ class VentanaApp:
  						tk.Label(frame,text="(Grupo Automáticos Canarios)").pack()
 
 					else:
+						
 						rango = self.rangos[numero_rango]
 						etiqueta_numero_rango = tk.Label(frame, text = rango, font=("Times New Roman",15,"bold"))
 						etiqueta_numero_rango.pack()
 						numero_rango += 1
 
-						etiqueta_numero_series = tk.Label(frame, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
-						etiqueta_numero_series.pack()
+						etiqueta_series = tk.Label(frame, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
+						etiqueta_series.pack()
 
-						numero_series7=tk.Label(frame, text="10", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
-						numero_series7.pack()
+						self.valor = self.valores[valor_actual]
+						self.etiqueta_numero_series = tk.Label(frame, text=str(self.valor), fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
+						self.etiqueta_numero_series.pack()
+						valor_actual += 1
 
-						botones_frame_inferior()				
+						#botones_frame_inferior()
+
+						for i in range(3):
+							identificador = f"boton{i+1}"
+							boton = tk.Button(frame,cursor="hand2")
+							boton.pack(padx=10, pady=5 )
+							self.frames[identificador] = boton
+							if identificador == "boton1":
+								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 1))
+							elif identificador == "boton2":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+							else:
+								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 1))				
 
 						if self.bandera:
 							frame.config(bg="#C0C0C0")
 							etiqueta_numero_rango.config(bg="#C0C0C0")
-							etiqueta_numero_series.config(bg="#C0C0C0")
+							etiqueta_series.config(bg="#C0C0C0")
 							self.bandera = False
 						else:
 							frame.config(bg="gray59")
 							etiqueta_numero_rango.config(bg="gray59")
-							etiqueta_numero_series.config(bg="gray59")
+							etiqueta_series.config(bg="gray59")
 							self.bandera = True
-
-				
-
-
-
 
 # def probar():
 # 	app.etiqueta_liquidacion["liquidacion_liqui1"].config(text=100)

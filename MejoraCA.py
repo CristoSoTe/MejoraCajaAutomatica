@@ -1,4 +1,12 @@
-import tkinter as tk
+import tkinter as tk 
+from tkinter import messagebox as MessageBox
+import os
+import random
+import socket
+import re
+import time
+import threading
+from funciones import *
 
 class VentanaApp:
 	def __init__(self, root):
@@ -10,6 +18,8 @@ class VentanaApp:
 		self.bandera = True
 		self.etiqueta_liquidacion = {}
 		self.frames = {}
+		self.photoSube=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaSube.png")
+		self.photoBaja=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaBaja.png")
 
 
 		self.rangos = ["RANGO 1", "RANGO 2", "RANGO 3", "RANGO 4", "RANGO 5", "RANGO 6", "RANGO 7", "RANGO 8", "RANGO 9", "CIERRE", "TOTAL"]
@@ -25,7 +35,7 @@ class VentanaApp:
 			frame.pack(side="top", fill="both", expand=True)
 			self.frames[identificador] = frame
 
-			# ---------------------- ZONA DE LIQUIDACIÓN-----------------------------------------
+# ---------------------- Frame de liquidación -----------------------------------------
 
 			if identificador == "Frame1":
 				for i in range(11):
@@ -72,6 +82,8 @@ class VentanaApp:
 				for i, rango in enumerate(self.numero_series):
 					carton_salida_liqui1_cierre = tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",18,"bold"), width=8).grid(row = 6, column = i, sticky = "ew")
 
+# ----------------------------- Frame de información CM70 ----------------------------------
+
 			if identificador == "Frame2":
 				frame.config(bg = "blue")
 				valor_fila = 0
@@ -84,6 +96,8 @@ class VentanaApp:
 					if valor_columna > 11:
 						valor_fila = 1
 						valor_columna = 0
+
+# -------------------------------- Frame de venta -----------------------------------
 
 			if identificador == "Frame3":
 				for i in range(11):
@@ -98,6 +112,9 @@ class VentanaApp:
 					else:
 						etiqueta.config(bg="gray59")
 						self.bandera = True
+
+# -------------------------------- Frame de boton cerrar partida ---------------------------
+
 			if identificador == "Frame4":
 				frame.config(bg = "yellow")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 0, column = i, sticky = "ew")
@@ -105,19 +122,69 @@ class VentanaApp:
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 2, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 3, column = i, sticky = "ew")
 
+# ---------------------------------------- Frame botones sube/baja ----------------------------------------------
+
 			if identificador == "Frame5":
-				for i in range(10):
+				numero_rango = 0
+
+				def botones_frame_inferior():
+					for i in range(3):
+						identificador = f"boton{i+1}"
+						boton = tk.Button(frame,cursor="hand2")
+						boton.pack(padx=10, pady=5 )
+						self.frames[identificador] = boton
+						if identificador == "boton1":
+							boton.config(image=self.photoSube)
+						elif identificador == "boton2":
+							boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+						else:
+							boton.config(image=self.photoBaja)
+
+				for i in range(11):
 					identificador = f"Frame{i+1}"
 					frame = tk.Frame(self.root)
 					frame.pack(side="left", fill="both", expand=True)
 					self.frames[identificador] = frame
-					tk.Button(frame, text=self.frames[identificador]).pack()
-					if self.bandera:
-						frame.config(bg="#C0C0C0")
-						self.bandera = False
+ 					
+					if identificador == "Frame1":
+						tk.Button(frame, text="Histórico", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command=poner_al_frente_root
+						tk.Button(frame, text= "RESET", bg= "#8B0000", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack()#, command=reset
+						tk.Button(frame, command=lambda: salir(root), text= "SALIR", bg= "red", fg="White", font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command= cerrar
+
+					elif identificador == "Frame11":
+ 						boton_prepara_rectifica=tk.Button(frame, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2" )#,command = PreparaRectifica
+ 						boton_prepara_rectifica.pack(pady=50)
+ 						tk.Label(frame,text="CARBI-93 S.A.").pack()
+ 						tk.Label(frame,text="(Grupo Automáticos Canarios)").pack()
+
 					else:
-						frame.config(bg="gray59")
-						self.bandera = True
+						rango = self.rangos[numero_rango]
+						etiqueta_numero_rango = tk.Label(frame, text = rango, font=("Times New Roman",15,"bold"))
+						etiqueta_numero_rango.pack()
+						numero_rango += 1
+
+						etiqueta_numero_series = tk.Label(frame, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
+						etiqueta_numero_series.pack()
+
+						numero_series7=tk.Label(frame, text="10", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
+						numero_series7.pack()
+
+						botones_frame_inferior()				
+
+						if self.bandera:
+							frame.config(bg="#C0C0C0")
+							etiqueta_numero_rango.config(bg="#C0C0C0")
+							etiqueta_numero_series.config(bg="#C0C0C0")
+							self.bandera = False
+						else:
+							frame.config(bg="gray59")
+							etiqueta_numero_rango.config(bg="gray59")
+							etiqueta_numero_series.config(bg="gray59")
+							self.bandera = True
+
+				
+
+
 
 
 # def probar():

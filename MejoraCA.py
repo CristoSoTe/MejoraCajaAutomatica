@@ -24,12 +24,13 @@ class VentanaApp:
 			frame = tk.Frame(self.root)
 			frame.pack(side="top", fill="both", expand=True)
 			self.frames[identificador] = frame
+
+			# ---------------------- ZONA DE LIQUIDACIÓN-----------------------------------------
+
 			if identificador == "Frame1":
 				for i in range(11):
+
 					frame.grid_columnconfigure(i, weight=1)
-
-				# ---------------------- ZONA DE LIQUIDACIÓN-----------------------------------------
-
 				for i, rango in enumerate(self.rangos): 
 					etiqueta=tk.Label(frame, text = rango, font=("Times New Roman",20,"bold"))
 					etiqueta.grid(row = 0, column = i, sticky = "ew")
@@ -41,7 +42,7 @@ class VentanaApp:
 						self.bandera = True
 
 				for i, numero_serie in enumerate(self.numero_series):
-					label = tk.Label(frame, text = "0€",bg="white",fg="#800080", font=("Times New Roman",22,"bold"),width=7)
+					label = tk.Label(frame, text = "100€",bg="white",fg="#800080", font=("Times New Roman",22,"bold"),width=7)
 					label.grid(row = 1, column = i, sticky = "ew")
 					self.etiqueta_liquidacion[numero_serie] = label
 
@@ -56,7 +57,7 @@ class VentanaApp:
 						self.bandera = True
 
 				for i, rango in enumerate(self.numero_series):
-					series_liquidacion_cierre = tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 4, column = i, sticky = "ew")
+					series_liquidacion_cierre = tk.Label(frame, text = "50",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 4, column = i, sticky = "ew")
 
 				for i in range(11):
 					etiqueta = tk.Label(frame, text = "DEL - AL",bg="#31BFE4", font=("Times New Roman",13,"bold"))
@@ -103,12 +104,22 @@ class VentanaApp:
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 1, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 2, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 3, column = i, sticky = "ew")
+
 			if identificador == "Frame5":
-				frame.config(bg = "green")
-				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 0, column = i, sticky = "ew")
-				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 1, column = i, sticky = "ew")
-				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 2, column = i, sticky = "ew")
-				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 3, column = i, sticky = "ew")
+				for i in range(10):
+					identificador = f"Frame{i+1}"
+					frame = tk.Frame(self.root)
+					frame.pack(side="left", fill="both", expand=True)
+					self.frames[identificador] = frame
+					tk.Button(frame, text=self.frames[identificador]).pack()
+					if self.bandera:
+						frame.config(bg="#C0C0C0")
+						self.bandera = False
+					else:
+						frame.config(bg="gray59")
+						self.bandera = True
+
+
 # def probar():
 # 	app.etiqueta_liquidacion["liquidacion_liqui1"].config(text=100)
 

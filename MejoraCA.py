@@ -20,9 +20,9 @@ class VentanaApp:
 		self.frames = {}
 		self.photoSube=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaSube.png")
 		self.photoBaja=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaBaja.png")
-		self.valor1=1; self.valor2=2; self.valor3=3; self.valor4=4;
-		self.valor5=5; self.valor6=6; self.valor7=7; self.valor8=8;
-		self.valor9=9
+		self.valor1=0; self.valor2=0; self.valor3=0; self.valor4=0;
+		self.valor5=0; self.valor6=0; self.valor7=0; self.valor8=0;
+		self.valor9=0
 		self.labels = []
 		self.botones = {}
 		self.numero_boton = 0
@@ -128,7 +128,13 @@ class VentanaApp:
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 1, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 2, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 3, column = i, sticky = "ew")
-
+			def baja_serie(self, num):
+			    if 1 <= num <= 9:
+			        index = num - 1
+			        valores = [self.valor1, self.valor2, self.valor3, self.valor4, self.valor5, self.valor6, self.valor7, self.valor8, self.valor9]
+			        if valores[index] > 0:
+			            valores[index] -= 1
+			            self.labels[index].config(text=valores[index])
 # ---------------------------------------- Frame botones sube/baja ----------------------------------------------
 
 			if identificador == "Frame5":
@@ -184,7 +190,7 @@ class VentanaApp:
 							elif identificador == "boton2":
 								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
 							elif identificador == "boton3":
-								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 1))
+								boton.config(image=self.photoBaja, command=baja_serie(self, 1))
 							elif identificador == "boton4":
 								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 2))
 							elif identificador == "boton5":
@@ -196,7 +202,13 @@ class VentanaApp:
 							elif identificador == "boton8":
 								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
 							elif identificador == "boton9":
-								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 3))					
+								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 3))
+							elif identificador == "boton10":
+								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 4))
+							elif identificador == "boton11":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+							elif identificador == "boton12":
+								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 4))					
 
 						if self.bandera:
 							frame.config(bg="#C0C0C0")
@@ -211,8 +223,7 @@ class VentanaApp:
 
 # def probar():
 # 	app.etiqueta_liquidacion["liquidacion_liqui1"].config(text=100)
-
-
+	
 if __name__ == "__main__":
 	root = tk.Tk()
 	app = VentanaApp(root)

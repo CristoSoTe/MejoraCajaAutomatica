@@ -1,49 +1,31 @@
 import tkinter as tk
 
 class VentanaApp:
-	def __init__(self, root):
-		
-		self.root = root
-		self.root.title("Caja Automática")
-		self.frames = {}
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Caja Automática")
+        self.valor1=0
+        self.valor2=0
+        self.valores = [self.valor1, self.valor2]
 
-		for i in range(5):
-			identificador = f"Frame{i+1}"
-			frame = tk.Frame(self.root)
-			frame.pack(side="top", fill="both", expand=True)
-			self.frames[identificador] = frame
+        self.etiqueta1 = tk.Label(root, text=0)
+        self.etiqueta1.pack()
 
-		# ---------------------- Frame de liquidación -----------------------------------------
+        self.etiqueta2 = tk.Label(root, text=0)
+        self.etiqueta2.pack()
 
-			if identificador == "Frame1":
-				for i in range(5):
-					identificador = f"Frame{i+1}"
-					frame = tk.Frame(self.root)
-					frame.pack(side="top", fill="both", expand=True)
-					self.frames[identificador] = frame
+        self.labels = [self.etiqueta1, self.etiqueta2]
 
-					if identificador == "Frame3": 
-						def botones_frame_inferior():
-							for i in range(3):
-								identificador = f"boton{i+1}"
-								boton = tk.Button(frame,cursor="hand2")
-								boton.pack(padx=10, pady=5 )
-								self.frames[identificador] = boton
+        # Creamos botones con funciones asociadas a cada uno
+        for i in range(len(self.labels)):
+            boton = tk.Button(root, text=f"Subir Serie {i+1}", command=lambda idx=i: self.sube_serie(idx))
+            boton.pack()
 
-								if identificador == "boton1":
-									boton.config(text= "Aumente")
-								elif identificador == "boton2":
-									boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
-								else:
-									boton.config(text="Disminuye")
-
-						etiqueta = tk.Label(frame, text="10", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
-						etiqueta.pack()
-
-						botones_frame_inferior()
-
+    def sube_serie(self, num):
+        self.valores[num] += 1
+        self.labels[num].config(text=self.valores[num])
 
 if __name__ == "__main__":
-	root = tk.Tk()
-	app = VentanaApp(root)
-	root.mainloop()
+    root = tk.Tk()
+    app = VentanaApp(root)
+    root.mainloop()

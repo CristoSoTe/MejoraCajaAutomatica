@@ -45,6 +45,15 @@ class VentanaApp:
 # ---------------------- Frame de liquidación -----------------------------------------
 
 			if identificador == "Frame1":
+				# for i in range(11):
+				# 	identificador = f"Frame{i+1}"
+				# 	frame = tk.Frame(self.root)
+				# 	frame.pack(side="left", fill="both", expand=True)
+				# 	self.frames[identificador] = frame
+
+				numero_rango = 0
+				valor_actual = 0
+
 				for i in range(11):
 					frame.grid_columnconfigure(i, weight=1)
 
@@ -58,36 +67,7 @@ class VentanaApp:
 						etiqueta.config(bg="gray59")
 						self.bandera = True
 
-				for i, numero_serie in enumerate(self.numero_series):
-					label = tk.Label(frame, text = "100€",bg="white",fg="#800080", font=("Times New Roman",22,"bold"),width=7)
-					label.grid(row = 1, column = i, sticky = "ew")
-					self.etiqueta_liquidacion[numero_serie] = label
 
-				for i in range(11):
-					etiqueta = tk.Label(frame, text = "SERIES",bg="#31BFE4", font=("Times New Roman",13,"bold"))
-					etiqueta.grid(row = 3, column = i, sticky = "ew")
-					if self.bandera:
-						etiqueta.config(bg="gray59")
-						self.bandera = False
-					else:
-						etiqueta.config(bg="#C0C0C0")
-						self.bandera = True
-
-				for i, rango in enumerate(self.numero_series):
-					series_liquidacion_cierre = tk.Label(frame, text = "50",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 4, column = i, sticky = "ew")
-
-				for i in range(11):
-					etiqueta = tk.Label(frame, text = "DEL - AL",bg="#31BFE4", font=("Times New Roman",13,"bold"))
-					etiqueta.grid(row = 5, column = i, sticky = "ew")
-					if self.bandera:
-						etiqueta.config(bg="#C0C0C0")
-						self.bandera = False
-					else:
-						etiqueta.config(bg="gray59")
-						self.bandera = True
-
-				for i, rango in enumerate(self.numero_series):
-					carton_salida_liqui1_cierre = tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",18,"bold"), width=8).grid(row = 6, column = i, sticky = "ew")
 
 # ----------------------------- Frame de información CM70 ----------------------------------
 
@@ -114,10 +94,10 @@ class VentanaApp:
 					etiqueta=tk.Label(frame, text = rango, font=("Times New Roman",20,"bold"))
 					etiqueta.grid(row = 0, column = i, sticky = "ew")
 					if self.bandera:
-						etiqueta.config(bg="#C0C0C0")
+						etiqueta.config(bg="gray59")
 						self.bandera = False
 					else:
-						etiqueta.config(bg="gray59")
+						etiqueta.config(bg="#C0C0C0")
 						self.bandera = True
 
 # -------------------------------- Frame de boton cerrar partida ---------------------------
@@ -128,14 +108,8 @@ class VentanaApp:
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 1, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 2, column = i, sticky = "ew")
 				tk.Label(frame, text = "0",bg="white",fg="blue", font=("Times New Roman",22,"bold"), width=2).grid(row = 3, column = i, sticky = "ew")
-			def baja_serie(self, num):
-			    if 1 <= num <= 9:
-			        index = num - 1
-			        valores = [self.valor1, self.valor2, self.valor3, self.valor4, self.valor5, self.valor6, self.valor7, self.valor8, self.valor9]
-			        if valores[index] > 0:
-			            valores[index] -= 1
-			            self.labels[index].config(text=valores[index])
-# ---------------------------------------- Frame botones sube/baja ----------------------------------------------
+			
+# ---------------------------------------- Frame botones sube/baja--------------------------
 
 			if identificador == "Frame5":
 				numero_rango = 0
@@ -170,10 +144,10 @@ class VentanaApp:
 						etiqueta_series = tk.Label(frame, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
 						etiqueta_series.pack()
 
-						self.valor = self.valores[valor_actual]
-						etiqueta_numero_series = tk.Label(frame, text=str(self.valor), fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
-						etiqueta_numero_series.pack()
-						self.labels.append(etiqueta_numero_series)
+						valor = self.valores[valor_actual]
+						self.etiqueta_numero_series = tk.Label(frame, text=valor, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
+						self.etiqueta_numero_series.pack()
+						self.labels.append(self.etiqueta_numero_series)
 						valor_actual += 1
 
 						#botones_frame_inferior()
@@ -186,29 +160,59 @@ class VentanaApp:
 							self.numero_boton += 1
 
 							if identificador == "boton1":
-								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 1))
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx))
 							elif identificador == "boton2":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
 							elif identificador == "boton3":
-								boton.config(image=self.photoBaja, command=baja_serie(self, 1))
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx-2))
 							elif identificador == "boton4":
-								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 2))
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+1))
 							elif identificador == "boton5":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
 							elif identificador == "boton6":
-								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 2))
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx-1))
 							elif identificador == "boton7":
-								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 3))
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+2))
 							elif identificador == "boton8":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
 							elif identificador == "boton9":
-								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 3))
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx))
 							elif identificador == "boton10":
-								boton.config(image=self.photoSube, command=lambda: sube_serie(self, 4))
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+3))
 							elif identificador == "boton11":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF" ,cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
 							elif identificador == "boton12":
-								boton.config(image=self.photoBaja, command=lambda: baja_serie(self, 4))					
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+1))
+							elif identificador == "boton13":
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+4))
+							elif identificador == "boton14":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+							elif identificador == "boton15":
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+2))
+							elif identificador == "boton16":
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+5))
+							elif identificador == "boton17":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+							elif identificador == "boton18":
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+3))
+							elif identificador == "boton19":
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+6))
+							elif identificador == "boton20":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+							elif identificador == "boton21":
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+4))
+							elif identificador == "boton22":
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+7))
+							elif identificador == "boton23":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+							elif identificador == "boton24":
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+5))
+							elif identificador == "boton25":
+								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+8))
+							elif identificador == "boton26":
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+							elif identificador == "boton27":
+								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+6))					
 
 						if self.bandera:
 							frame.config(bg="#C0C0C0")

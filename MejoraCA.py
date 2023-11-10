@@ -45,26 +45,26 @@ class VentanaApp:
 # ---------------------- Frame de liquidación -----------------------------------------
 
 			if identificador == "Frame1":
-				# for i in range(11):
-				# 	identificador = f"Frame{i+1}"
-				# 	frame = tk.Frame(self.root)
-				# 	frame.pack(side="left", fill="both", expand=True)
-				# 	self.frames[identificador] = frame
-
 				numero_rango = 0
-				valor_actual = 0
-
 				for i in range(11):
-					frame.grid_columnconfigure(i, weight=1)
+					sub_identificador = f"SubFrame{i+1}"
+					sub_frame = tk.Frame(frame)
+					sub_frame.pack(side="left", fill="both", expand=True)
+					self.frames[sub_identificador] = sub_frame
+					sub_frame.grid_columnconfigure(i, weight=1)
 
-				for i, rango in enumerate(self.rangos): 
-					etiqueta=tk.Label(frame, text = rango, font=("Times New Roman",20,"bold"))
-					etiqueta.grid(row = 0, column = i, sticky = "ew")
+					rango = self.rangos[numero_rango]
+					etiqueta_numero_rango_liquidacion = tk.Label(sub_frame, text = rango, font=("Times New Roman",20,"bold"))
+					etiqueta_numero_rango_liquidacion.pack()
+					numero_rango += 1
+
 					if self.bandera:
-						etiqueta.config(bg="#C0C0C0")
+						sub_frame.config(bg="#C0C0C0")
+						etiqueta_numero_rango_liquidacion.config(bg="#C0C0C0")
 						self.bandera = False
 					else:
-						etiqueta.config(bg="gray59")
+						sub_frame.config(bg="gray59")
+						etiqueta_numero_rango_liquidacion.config(bg="gray59")
 						self.bandera = True
 
 

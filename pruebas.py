@@ -4,26 +4,30 @@ class VentanaApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Caja Automática")
-        self.valor1=0
-        self.valor2=0
-        self.valores = [self.valor1, self.valor2]
+        self.frames = {}
+        
+        for i in range(5):
+        	identificador = f"Frame{i+1}"
+        	frame = tk.Frame(self.root)
+        	frame.pack(side="top", fill="both", expand=True)
+        	self.frames[identificador] = frame
 
-        self.etiqueta1 = tk.Label(root, text=0)
-        self.etiqueta1.pack()
-
-        self.etiqueta2 = tk.Label(root, text=0)
-        self.etiqueta2.pack()
-
-        self.labels = [self.etiqueta1, self.etiqueta2]
-
-        # Creamos botones con funciones asociadas a cada uno
-        for i in range(len(self.labels)):
-            boton = tk.Button(root, text=f"Subir Serie {i+1}", command=lambda idx=i: self.sube_serie(idx))
-            boton.pack()
-
-    def sube_serie(self, num):
-        self.valores[num] += 1
-        self.labels[num].config(text=self.valores[num])
+        	if identificador == "Frame1":
+	        	for i in range(11):
+	        		sub_identificador = f"SubFrame{i+1}"
+	        		sub_frame = tk.Frame(frame)
+	        		sub_frame.pack(side="left", fill="both", expand=True)
+	        		self.frames[sub_identificador] = sub_frame
+	        		sub_frame.grid_columnconfigure(i, weight=1)
+	        		if sub_identificador == "SubFrame1":
+	        			sub_frame.configure(bg="blue")  # Configura el color de fondo del subframe
+	        			tk.Label(sub_frame, text="Hola").pack()
+	        		else:
+	        			tk.Label(sub_frame, text="Adios").pack()
+        	else:
+        		pass
+        		#tk.Label(frame, text="Adios")
+        		
 
 if __name__ == "__main__":
     root = tk.Tk()

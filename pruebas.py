@@ -5,29 +5,32 @@ class VentanaApp:
         self.root = root
         self.root.title("Caja Automática")
         self.frames = {}
-        
-        for i in range(5):
-        	identificador = f"Frame{i+1}"
-        	frame = tk.Frame(self.root)
-        	frame.pack(side="top", fill="both", expand=True)
-        	self.frames[identificador] = frame
+        self.subframes = {}
 
-        	if identificador == "Frame1":
-	        	for i in range(11):
-	        		sub_identificador = f"SubFrame{i+1}"
-	        		sub_frame = tk.Frame(frame)
-	        		sub_frame.pack(side="left", fill="both", expand=True)
-	        		self.frames[sub_identificador] = sub_frame
-	        		sub_frame.grid_columnconfigure(i, weight=1)
-	        		if sub_identificador == "SubFrame1":
-	        			sub_frame.configure(bg="blue")  # Configura el color de fondo del subframe
-	        			tk.Label(sub_frame, text="Hola").pack()
-	        		else:
-	        			tk.Label(sub_frame, text="Adios").pack()
-        	else:
-        		pass
-        		#tk.Label(frame, text="Adios")
-        		
+        for i in range(5):
+            identificador = f"Frame{i+1}"
+            frame = tk.Frame(self.root)
+            frame.pack(side="top", fill="both", expand=True)
+            self.frames[identificador] = frame
+
+            if identificador == "Frame1":
+                for j in range(11):
+                    subidentificador = f"SubFrameLiquidacion{j+1}"
+                    subframe = tk.Frame(frame, bg="white")
+                    subframe.pack(side="left", fill="both", expand=True)
+                    self.subframes[subidentificador] = subframe
+                    frame.grid_columnconfigure(j, weight=1)
+
+                    if subidentificador == "SubFrameLiquidacion11":
+                    	etiqueta_total_liquidacion = tk.Label(subframe, text="TOTAL", font=("Times New Roman", 20, "bold"))
+                    	etiqueta_total_liquidacion.pack()
+                    elif subidentificador == "SubFrameLiquidacion10":
+                    	subframe.configure(background="red")
+                    	etiqueta_cierre_liquidacion = tk.Label(subframe, text="CIERRE", font=("Times New Roman", 20, "bold"))
+                    	etiqueta_cierre_liquidacion.pack()
+                    else:
+                    	etiqueta_cierre_liquidacion = tk.Label(subframe, text="RANGO", font=("Times New Roman", 20, "bold"))
+                    	etiqueta_cierre_liquidacion.pack()
 
 if __name__ == "__main__":
     root = tk.Tk()

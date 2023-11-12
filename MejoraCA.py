@@ -21,22 +21,35 @@ class VentanaApp:
 		self.subframesLiquidacion = {}
 		self.subframesCierre = {}
 		self.subframesVenta = {}
+		self.subframesBotones = {}
 		self.photoSube=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaSube.png")
 		self.photoBaja=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaBaja.png")
 
 		self.pico_salida=0
 
+		#------------------------------------------- Variables Liquidacion --------------------------
+
 		self.liquidacion1=0; self.liquidacion2=0; self.liquidacion3=0; self.liquidacion4=0; self.liquidacion5=0;
 		self.liquidacion6=0; self.liquidacion7=0; self.liquidacion8=0; self.liquidacion9=0; self.liquidacion_cierre=0; self.liquidacion_total=0;
 
-		self.series_liquidacion_rango1="0 - 0"; self.series_liquidacion_rango2=0; self.series_liquidacion_rango3=0; self.series_liquidacion_rango4=0; self.series_liquidacion_rango5=0;
-		self.series_liquidacion_rango6=0; self.series_liquidacion_rango7=0; self.series_liquidacion_rango8=0; self.series_liquidacion_rango9=0; self.series_liquidacion_cierre="0 - 0";
+		self.series_liquidacion_rango1="0 + 0"; self.series_liquidacion_rango2=0; self.series_liquidacion_rango3=0; self.series_liquidacion_rango4=0; self.series_liquidacion_rango5=0;
+		self.series_liquidacion_rango6=0; self.series_liquidacion_rango7=0; self.series_liquidacion_rango8=0; self.series_liquidacion_rango9=0; self.series_liquidacion_cierre="0 + 0";
 		self.series_liquidacion_total=0;
 
 		self.cartones_liquidacion1=0; self.cartones_liquidacion2=0;self.cartones_liquidacion3=0; self.cartones_liquidacion4=0; self.cartones_liquidacion5=0;
 		self.cartones_liquidacion6=0; self.cartones_liquidacion7=0;self.cartones_liquidacion8=0; self.cartones_liquidacion9=0; self.cartones_liquidacion_cierre=0;
-		self.cartones_liquidacion_total=0; 
+		self.cartones_liquidacion_total=0;
 
+		#------------------------------------------ Variables Venta -------------------------------------
+
+		self.numero_series_por_rango_venta1=0; self.numero_series_por_rango_venta2=0; self.numero_series_por_rango_venta3=0; self.numero_series_por_rango_venta4=0;
+		self.numero_series_por_rango_venta5=0; self.numero_series_por_rango_venta6=0; self.numero_series_por_rango_venta7=0; self.numero_series_por_rango_venta8=0;
+		self.numero_series_por_rango_venta9=0;
+
+		self.carton_salida1=0; self.carton_salida2=0; self.carton_salida3=0; self.carton_salida4=0; self.carton_salida5=0; self.carton_salida6=0; self.carton_salida7=0; self.carton_salida8=0; self.carton_salida9=0;
+
+		self.carton_salida_siguiente1=0; self.carton_salida_siguiente2=0; self.carton_salida_siguiente3=0; self.carton_salida_siguiente4=0; self.carton_salida_siguiente5=0; self.carton_salida_siguiente6=0; self.carton_salida_siguiente7=0; self.carton_salida_siguiente8=0; self.carton_salida_siguiente9=0;
+		#------------------------------------------- Variables Botones ----------------------------------
 
 		self.valor1=0; self.valor2=0; self.valor3=0; self.valor4=0; self.valor5=0;
 		self.valor6=0; self.valor7=0; self.valor8=0; self.valor9 = 0
@@ -44,7 +57,10 @@ class VentanaApp:
 		self.labels = []
 		self.lista_liquidacion = []
 		self.lista_numero_series_liquidacion = []
+		self.lista_numero_series_por_rango_venta = []
 		self.lista_cartones_liquidacion = []
+		self.lista_carton_salida_1 = []
+		self.lista_carton_salida_siguiente_1 = []
 		self.botones = {}
 		self.numero_boton = 0
 
@@ -55,11 +71,22 @@ class VentanaApp:
 
 		self.etiquetas_premios = ["PRECIO", "DEL", "IMPRESOS", "RECAUDADO", "PREMIO LINEA", "PRIMA", "VENDIDOS", "AL", "INFORMATICOS","CAJA IMPRESOS", "PREMIO BINGO", "PRIMA EXTRA"]
 
+		#--------------------------------------------- Listas liquidacion -----------------------------
+
 		self.liquidacion = [self.liquidacion1, self.liquidacion2, self.liquidacion3, self.liquidacion4, self.liquidacion5, self.liquidacion6, self.liquidacion7, self.liquidacion8, self.liquidacion9, self.liquidacion_cierre, self.liquidacion_total]
 
 		self.numero_series_liquidacion = [self.series_liquidacion_rango1, self.series_liquidacion_rango2, self.series_liquidacion_rango3, self.series_liquidacion_rango4, self.series_liquidacion_rango5, self.series_liquidacion_rango6, self.series_liquidacion_rango7, self.series_liquidacion_rango8, self.series_liquidacion_rango9, self.series_liquidacion_cierre, self.series_liquidacion_total]
 
 		self.cartones_liquidacion = [self.cartones_liquidacion1, self.cartones_liquidacion2, self.cartones_liquidacion3, self.cartones_liquidacion4, self.cartones_liquidacion5, self.cartones_liquidacion6, self.cartones_liquidacion7, self.cartones_liquidacion8, self.cartones_liquidacion9, self.cartones_liquidacion_cierre, self.cartones_liquidacion_total]
+
+		#---------------------------------------------- Listas Venta ---------------------------------
+
+		self.numero_series_venta = [self.numero_series_por_rango_venta1, self.numero_series_por_rango_venta2, self.numero_series_por_rango_venta3, self.numero_series_por_rango_venta4, self.numero_series_por_rango_venta5, self.numero_series_por_rango_venta6, self.numero_series_por_rango_venta7, self.numero_series_por_rango_venta8, self.numero_series_por_rango_venta9]
+
+		self.numero_carton_salida_1 =[self.carton_salida1, self.carton_salida2, self.carton_salida3, self.carton_salida4, self.carton_salida5, self.carton_salida6, self.carton_salida7, self.carton_salida8, self.carton_salida9]
+
+		self.numero_carton_salida_siguiente_1 =[self.carton_salida_siguiente1, self.carton_salida_siguiente2, self.carton_salida_siguiente3, self.carton_salida_siguiente4, self.carton_salida_siguiente5, self.carton_salida_siguiente6, self.carton_salida_siguiente7, self.carton_salida_siguiente8, self.carton_salida_siguiente9]
+		#-----------------------------------------------------------------------------------------------
 
 		self.valores = [self.valor1, self.valor2, self.valor3, self.valor4, self.valor5, self.valor6, self.valor7, self.valor8, self.valor9]
 
@@ -216,9 +243,10 @@ class VentanaApp:
 
 			if identificador == "Frame3":
 				indice_rango_venta = 1
+				indice_series_venta = 1
+				indice_carton_salida = 1
+
 				for j in range(11):
-					indice_rango_venta = 1
-					
 					subIdentificador = f"SubFrameVenta{j+1}"
 					subframe = tk.Frame(frame, bg="white")
 					subframe.pack(side="left", fill="both", expand=True)
@@ -244,17 +272,41 @@ class VentanaApp:
 						etiqueta_numero_rango_venta.pack()
 						indice_rango_venta += 1
 
+						etiquetas_series_venta=tk.Label(subframe, text = "SERIES", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
+						etiquetas_series_venta.pack()
+
+						numero_series_por_rango_venta = self.numero_series_venta[indice_series_venta]
+						self.etiqueta_numero_series_por_rango_venta = tk.Label(subframe, text=numero_series_por_rango_venta, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=3)
+						self.etiqueta_numero_series_por_rango_venta.pack()
+						self.lista_numero_series_por_rango_venta.append(self.etiqueta_numero_series_por_rango_venta)
+						indice_series_venta += 1
+
+						etiquetas_salidas_venta=tk.Label(subframe, text = "SALIDAS", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
+						etiquetas_salidas_venta.pack()
+
+						carton_salida_1 = self.numero_carton_salida_1[indice_carton_salida]
+						self.etiqueta_carton_salida = tk.Label(subframe, text=carton_salida_1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
+						self.etiqueta_carton_salida.pack()
+						self.lista_carton_salida_1.append(self.etiqueta_carton_salida)
+
+						carton_salida_siguiente_1 = self.numero_carton_salida_siguiente_1[indice_carton_salida]
+						self.etiqueta_carton_salida_siguiente = tk.Label(subframe, text=carton_salida_siguiente_1, fg="blue", bg = "white", font=("Times New Roman",15,"bold"), width=4)
+						self.etiqueta_carton_salida_siguiente.pack(pady=1)
+						self.lista_carton_salida_siguiente_1.append(self.etiqueta_carton_salida_siguiente)
+						indice_carton_salida += 1
+
+
 						if self.bandera:
 							subframe.config(bg="#C0C0C0")
 							etiqueta_numero_rango_venta.config(bg="#C0C0C0")
-							# series_liquidacion.config(bg="#C0C0C0")
-							# del_al_liquidacion.config(bg="#C0C0C0")
+							etiquetas_series_venta.config(bg="#C0C0C0")
+							etiquetas_salidas_venta.config(bg="#C0C0C0")
 							self.bandera = False
 						else:
 							subframe.config(bg="gray59")
 							etiqueta_numero_rango_venta.config(bg="gray59")
-							# series_liquidacion.config(bg="gray59")
-							# del_al_liquidacion.config(bg="gray59")
+							etiquetas_series_venta.config(bg="gray59")
+							etiquetas_salidas_venta.config(bg="gray59")
 							self.bandera = True
 
 # -------------------------------- Frame de boton cerrar partida ---------------------------
@@ -282,35 +334,36 @@ class VentanaApp:
 				
 				
 
-				for i in range(11):
-					identificador = f"Frame{i+1}"
-					frame = tk.Frame(self.root)
-					frame.pack(side="left", fill="both", expand=True)
-					self.frames[identificador] = frame
+				for j in range(11):
+					sub_identificador = f"Frame{j+1}"
+					Subframe = tk.Frame(self.root)
+					Subframe.pack(side="left", fill="both", expand=True)
+					self.subframesBotones[sub_identificador] = Subframe
+					SubFrame.grid_columnconfigure(j, weight=1)
  					
-					if identificador == "Frame1":
-						tk.Button(frame, text="Histórico", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command=poner_al_frente_root
-						tk.Button(frame, text= "RESET", bg= "#8B0000", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack()#, command=reset
-						tk.Button(frame, command=lambda: salir(root), text= "SALIR", bg= "red", fg="White", font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command= cerrar
+					if sub_identificador == "Frame1":
+						tk.Button(Subframe, text="Histórico", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command=poner_al_frente_root
+						tk.Button(Subframe, text= "RESET", bg= "#8B0000", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack()#, command=reset
+						tk.Button(Subframe, command=lambda: salir(root), text= "SALIR", bg= "red", fg="White", font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command= cerrar
 
-					elif identificador == "Frame11":
- 						boton_prepara_rectifica=tk.Button(frame, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2" )#,command = PreparaRectifica
+					elif sub_identificador == "Frame11":
+ 						boton_prepara_rectifica=tk.Button(Subframe, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2" )#,command = PreparaRectifica
  						boton_prepara_rectifica.pack(pady=50)
- 						tk.Label(frame,text="CARBI-93 S.A.").pack()
- 						tk.Label(frame,text="(Grupo Automáticos Canarios)").pack()
+ 						tk.Label(Subframe,text="CARBI-93 S.A.").pack()
+ 						tk.Label(Subframe,text="(Grupo Automáticos Canarios)").pack()
 
 					else:
 						
 						rango = self.rangos[numero_rango]
-						etiqueta_numero_rango = tk.Label(frame, text = rango, font=("Times New Roman",15,"bold"))
+						etiqueta_numero_rango = tk.Label(Subframe, text = rango, font=("Times New Roman",15,"bold"))
 						etiqueta_numero_rango.pack()
 						numero_rango += 1
 
-						etiqueta_series = tk.Label(frame, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
+						etiqueta_series = tk.Label(Subframe, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
 						etiqueta_series.pack()
 
 						valor = self.valores[valor_actual]
-						self.etiqueta_numero_series = tk.Label(frame, text=valor, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
+						self.etiqueta_numero_series = tk.Label(Subframe, text=valor, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
 						self.etiqueta_numero_series.pack()
 						self.labels.append(self.etiqueta_numero_series)
 						valor_actual += 1
@@ -319,7 +372,7 @@ class VentanaApp:
 						
 						for i in range(3):
 							identificador = f"boton{self.numero_boton+1}"
-							boton = tk.Button(frame,cursor="hand2")
+							boton = tk.Button(Subframe,cursor="hand2")
 							boton.pack(padx=10, pady=5)
 							self.botones[identificador] = boton #frames
 							self.numero_boton += 1
@@ -380,12 +433,12 @@ class VentanaApp:
 								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+6))					
 
 						if self.bandera:
-							frame.config(bg="#C0C0C0")
+							Subframe.config(bg="#C0C0C0")
 							etiqueta_numero_rango.config(bg="#C0C0C0")
 							etiqueta_series.config(bg="#C0C0C0")
 							self.bandera = False
 						else:
-							frame.config(bg="gray59")
+							Subframe.config(bg="gray59")
 							etiqueta_numero_rango.config(bg="gray59")
 							etiqueta_series.config(bg="gray59")
 							self.bandera = True

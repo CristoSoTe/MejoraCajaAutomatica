@@ -16,13 +16,13 @@ def salir(ventana):
 
 def sube_serie(ventana, num):
 	ventana.valores[num] += 1
-	ventana.labels[num].config(text=ventana.valores[num])
+	ventana.lista_series_frame_5[num].config(text=ventana.valores[num])
 
 def baja_serie(ventana, num):
-	dato=ventana.labels[num].cget("text") 
+	dato=ventana.lista_series_frame_5[num].cget("text") 
 	if int(dato) > 0:
 		ventana.valores[num] -= 1
-		ventana.labels[num].config(text=ventana.valores[num])
+		ventana.lista_series_frame_5[num].config(text=ventana.valores[num])
 
 def sube_a_venta_un_rango(ventana, num):
 	pass

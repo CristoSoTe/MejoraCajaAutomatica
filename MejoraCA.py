@@ -430,8 +430,8 @@ class VentanaApp:
 				# 	SubFrame.grid_columnconfigure(j, weight=1)
 
 				#if sub_identificador == "SubFrameCerrar1":
-				tk.Button(frame, text="CERRAR", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=1)
-				frame.config(bg="#AFEEEE")
+				tk.Button(frame, text="CERRAR", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=7)
+				frame.config(bg="blue")
 					# elif sub_identificador == "SubFrameCerrar2":
 					# 	tk.Button(SubFrame, text="ATRAS", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(padx=10, side=tk.RIGHT)
 					# 	SubFrame.config(bg="#AFEEEE")

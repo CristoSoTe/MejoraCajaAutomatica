@@ -46,6 +46,9 @@ class VentanaApp:
 
 		#------------------------------------------ Variables Venta -------------------------------------
 
+		self.entry_salida_1= 0; self.entry_salida_2=0; self.entry_salida_3=0; self.entry_salida_6=0;
+		#Variables de los Entry del carton de salida del rango 1
+
 		self.numero_series_por_rango_venta1=0; self.numero_series_por_rango_venta2=0; self.numero_series_por_rango_venta3=0; self.numero_series_por_rango_venta4=0;
 		self.numero_series_por_rango_venta5=0; self.numero_series_por_rango_venta6=0; self.numero_series_por_rango_venta7=0; self.numero_series_por_rango_venta8=0;
 		self.numero_series_por_rango_venta9=0;
@@ -75,6 +78,9 @@ class VentanaApp:
 		self.carton_salida_siguiente6_rango1=0; self.carton_salida_siguiente6_rango2=0; self.carton_salida_siguiente6_rango3=0; self.carton_salida_siguiente6_rango4=0; self.carton_salida_siguiente6_rango5=0; self.carton_salida_siguiente6_rango6=0; self.carton_salida_siguiente6_rango7=0; self.carton_salida_siguiente6_rango8=0; self.carton_salida_siguiente6_rango9=0;
 		# Variables carton de salida para la siguiente partida en el frame de venta al precio de 6€
 
+		self.carton_salida_cierre_1=0; self.carton_salida_cierre_2=0; self.carton_salida_cierre_3=0; self.carton_salida_cierre_6=0;
+		#Variables del carton de salida del rango de cierre
+
 		#------------------------------------------- Variables Botones ----------------------------------
 
 		self.valor1=0; self.valor2=0; self.valor3=0; self.valor4=0; self.valor5=0;
@@ -93,7 +99,10 @@ class VentanaApp:
 		self.lista_carton_salida_siguiente_3 = []
 		self.lista_carton_salida_6 = []
 		self.lista_carton_salida_siguiente_6 = []
+		self.lista_Entry_carton_salida = []
+		self.lista_carton_salida_cierre = []
 		self.lista_series_frame_5 = []
+
 
 		self.numero_boton = 0
 
@@ -116,6 +125,9 @@ class VentanaApp:
 		# Lista de los cartones que tiene cada rango en la liquidacion
 
 		#---------------------------------------------- Listas Venta ---------------------------------
+
+		self.Entry_numero_carton_salida = [self.entry_salida_1, self.entry_salida_2, self.entry_salida_3, self.entry_salida_6]
+		# Esta es la lista de los Entry del rango de salida del rango 1
 
 		self.numero_series_venta = [self.numero_series_por_rango_venta1, self.numero_series_por_rango_venta2, self.numero_series_por_rango_venta3, self.numero_series_por_rango_venta4, self.numero_series_por_rango_venta5, self.numero_series_por_rango_venta6, self.numero_series_por_rango_venta7, self.numero_series_por_rango_venta8, self.numero_series_por_rango_venta9] 
 		#Esta es la lista donde se encuentra el numero de series asignadas a cada rango en la zona de venta
@@ -143,9 +155,14 @@ class VentanaApp:
 
 		self.numero_carton_salida_siguiente_6 = [self.carton_salida_siguiente6_rango1, self.carton_salida_siguiente6_rango2, self.carton_salida_siguiente6_rango3, self.carton_salida_siguiente6_rango4, self.carton_salida_siguiente6_rango5, self.carton_salida_siguiente6_rango6, self.carton_salida_siguiente6_rango7, self.carton_salida_siguiente6_rango8, self.carton_salida_siguiente6_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de la partida siguiente de todos los rangos al precio de 6€
+
+		self.etiqueta_numero_carton_salida_cierre = [self.carton_salida_cierre_1, self.carton_salida_cierre_2, self.carton_salida_cierre_3, self.carton_salida_cierre_6]
+		# Esta es la lista donde estan las variables del carton de salida del rango de cierre
+
 		#-----------------------------------------------------------------------------------------------
 
 		self.valores = [self.valor1, self.valor2, self.valor3, self.valor4, self.valor5, self.valor6, self.valor7, self.valor8, self.valor9]
+		# Variables para las series del frame de los botones de sube/baja series 
 
 		for i in range(5):
 			identificador = f"Frame{i+1}"
@@ -311,17 +328,48 @@ class VentanaApp:
 					subframe.grid_columnconfigure(j, weight=1)
 
 					if subIdentificador == "SubFrameVenta1":
-						tk.Label(subframe, text="Precios").pack()
+						subframe.config( bg="gray59")
+						lista_precios = ["1,5€", "2€", "3€", "6€"]
+						tk.Label(subframe, text="Precios", font=("Times New Roman",20,"bold"), bg="gray59").pack(pady=40)
+						for i in lista_precios:
+							tk.Label(subframe, text= i, font=("Times New Roman",20,"bold"), bg="gray59", fg="blue").pack(pady=18)
 
 					elif subIdentificador == "SubFrameVenta2":
 						subframe.config(bg="#00FFFF")
 						self.etiqueta_numero_rango1_venta = tk.Label(subframe, text = "RANGO1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_numero_rango1_venta.pack()
 
+						etiquetas_series_venta=tk.Label(subframe, text = "SERIES", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
+						etiquetas_series_venta.pack()
+
+						self.etiqueta_numero_series_por_rango1_venta = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=3)
+						self.etiqueta_numero_series_por_rango1_venta.pack()
+
+						etiquetas_salidas_venta1=tk.Label(subframe, text = "SALIDAS", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
+						etiquetas_salidas_venta1.pack()
+
+						for h in range(4):
+							carton_salida_1 = self.Entry_numero_carton_salida[indice_carton_salida]
+							self.Entry_carton_salida = tk.Entry(subframe, text=carton_salida_1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
+							self.Entry_carton_salida.pack(pady=16)
+							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
+
+							etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
+							etiqueta_vacia.pack()
+
 					elif subIdentificador == "SubFrameVenta11":
 						subframe.config(bg="#00FFFF")
 						self.etiqueta_cierre_venta = tk.Label(subframe, text = "CIERRE", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_cierre_venta.pack()
+
+						for r in range(4):
+							carton_salida_cierre = self.etiqueta_numero_carton_salida_cierre[indice_carton_salida]#indice_carton_salida
+							self.etiqueta_carton_salida_cierre = tk.Label(subframe, text=carton_salida_cierre, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
+							self.etiqueta_carton_salida_cierre.pack(pady=16)
+							self.lista_carton_salida_cierre.append(self.etiqueta_carton_salida_cierre)
+
+							etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
+							etiqueta_vacia.pack()
 
 					else:
 						rango = self.rangos[indice_rango_venta]

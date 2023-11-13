@@ -81,6 +81,8 @@ class VentanaApp:
 		self.carton_salida_cierre_1=0; self.carton_salida_cierre_2=0; self.carton_salida_cierre_3=0; self.carton_salida_cierre_6=0;
 		#Variables del carton de salida del rango de cierre
 
+		self.carton_salida_siguiente_cierre=0; self.carton_salida_siguiente_cierre_2=0; self.carton_siguiente_salida_cierre_3=0; self.carton_salida_siguiente_cierre_6=0;
+
 		#------------------------------------------- Variables Botones ----------------------------------
 
 		self.valor1=0; self.valor2=0; self.valor3=0; self.valor4=0; self.valor5=0;
@@ -91,17 +93,18 @@ class VentanaApp:
 		self.lista_numero_series_liquidacion = []
 		self.lista_numero_series_por_rango_venta = []
 		self.lista_cartones_liquidacion = []
-		self.lista_carton_salida_1 = []
-		self.lista_carton_salida_siguiente_1 = []
-		self.lista_carton_salida_2 = []
-		self.lista_carton_salida_siguiente_2 = []
-		self.lista_carton_salida_3 = []
-		self.lista_carton_salida_siguiente_3 = []
-		self.lista_carton_salida_6 = []
-		self.lista_carton_salida_siguiente_6 = []
+		self.lista_carton_salida_2_9 = []
+		self.lista_carton_salida_siguiente_2_9 = []
+		# self.lista_carton_salida_2 = []
+		# self.lista_carton_salida_siguiente_2 = []
+		# self.lista_carton_salida_3 = []
+		# self.lista_carton_salida_siguiente_3 = []
+		# self.lista_carton_salida_6 = []
+		# self.lista_carton_salida_siguiente_6 = []
 		self.lista_Entry_carton_salida = []
 		self.lista_carton_salida_cierre = []
 		self.lista_series_frame_5 = []
+		self.lista_carton_salida_siguiente_cierre = []
 
 
 		self.numero_boton = 0
@@ -132,32 +135,34 @@ class VentanaApp:
 		self.numero_series_venta = [self.numero_series_por_rango_venta1, self.numero_series_por_rango_venta2, self.numero_series_por_rango_venta3, self.numero_series_por_rango_venta4, self.numero_series_por_rango_venta5, self.numero_series_por_rango_venta6, self.numero_series_por_rango_venta7, self.numero_series_por_rango_venta8, self.numero_series_por_rango_venta9] 
 		#Esta es la lista donde se encuentra el numero de series asignadas a cada rango en la zona de venta
 
-		self.numero_carton_salida_1 =[self.carton_salida1_rango1, self.carton_salida1_rango2, self.carton_salida1_rango3, self.carton_salida1_rango4, self.carton_salida1_rango5, self.carton_salida1_rango6, self.carton_salida1_rango7, self.carton_salida1_rango8, self.carton_salida1_rango9] 
+		self.numero_carton_salida_2_9 =["X", self.carton_salida1_rango2, self.carton_salida1_rango3, self.carton_salida1_rango4, self.carton_salida1_rango5, self.carton_salida1_rango6, self.carton_salida1_rango7, self.carton_salida1_rango8, self.carton_salida1_rango9, self.carton_salida2_rango1, self.carton_salida2_rango2, self.carton_salida2_rango3, self.carton_salida2_rango4, self.carton_salida2_rango5, self.carton_salida2_rango6, self.carton_salida2_rango7, self.carton_salida2_rango8, self.carton_salida2_rango9, self.carton_salida3_rango1, self.carton_salida3_rango2, self.carton_salida3_rango3, self.carton_salida3_rango4, self.carton_salida3_rango5, self.carton_salida3_rango6, self.carton_salida3_rango7, self.carton_salida3_rango8, self.carton_salida3_rango9, self.carton_salida6_rango1, self.carton_salida6_rango2, self.carton_salida6_rango3, self.carton_salida6_rango4, self.carton_salida6_rango5, self.carton_salida6_rango6, self.carton_salida6_rango7, self.carton_salida6_rango8, self.carton_salida6_rango9] #self.carton_salida1_rango1
 		# Esta es la lista donde estan las variables del carton de salida de todos los rangos al precio de 1.5€
 
-		self.numero_carton_salida_siguiente_1 =[self.carton_salida_siguiente1_rango1, self.carton_salida_siguiente1_rango2, self.carton_salida_siguiente1_rango3, self.carton_salida_siguiente1_rango4, self.carton_salida_siguiente1_rango5, self.carton_salida_siguiente1_rango6, self.carton_salida_siguiente1_rango7, self.carton_salida_siguiente1_rango8, self.carton_salida_siguiente1_rango9] 
+		self.numero_carton_salida_siguiente_2_9 =[self.carton_salida_siguiente1_rango1, self.carton_salida_siguiente1_rango2, self.carton_salida_siguiente1_rango3, self.carton_salida_siguiente1_rango4, self.carton_salida_siguiente1_rango5, self.carton_salida_siguiente1_rango6, self.carton_salida_siguiente1_rango7, self.carton_salida_siguiente1_rango8, self.carton_salida_siguiente1_rango9, self.carton_salida_siguiente2_rango1, self.carton_salida_siguiente2_rango2, self.carton_salida_siguiente2_rango3, self.carton_salida_siguiente2_rango4, self.carton_salida_siguiente2_rango5, self.carton_salida_siguiente2_rango6, self.carton_salida_siguiente2_rango7, self.carton_salida_siguiente2_rango8, self.carton_salida_siguiente2_rango9, self.carton_salida_siguiente3_rango1, self.carton_salida_siguiente3_rango2, self.carton_salida_siguiente3_rango3, self.carton_salida_siguiente3_rango4, self.carton_salida_siguiente3_rango5, self.carton_salida_siguiente3_rango6, self.carton_salida_siguiente3_rango7, self.carton_salida_siguiente3_rango8, self.carton_salida_siguiente3_rango9, self.carton_salida_siguiente6_rango1, self.carton_salida_siguiente6_rango2, self.carton_salida_siguiente6_rango3, self.carton_salida_siguiente6_rango4, self.carton_salida_siguiente6_rango5, self.carton_salida_siguiente6_rango6, self.carton_salida_siguiente6_rango7, self.carton_salida_siguiente6_rango8, self.carton_salida_siguiente6_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de la partida siguiente de todos los rangos al precio de 1.5€
 
-		self.numero_carton_salida_2 = [self.carton_salida2_rango1, self.carton_salida2_rango2, self.carton_salida2_rango3, self.carton_salida2_rango4, self.carton_salida2_rango5, self.carton_salida2_rango6, self.carton_salida2_rango7, self.carton_salida2_rango8, self.carton_salida2_rango9] 
+		# self.numero_carton_salida_2 = [self.carton_salida2_rango1, self.carton_salida2_rango2, self.carton_salida2_rango3, self.carton_salida2_rango4, self.carton_salida2_rango5, self.carton_salida2_rango6, self.carton_salida2_rango7, self.carton_salida2_rango8, self.carton_salida2_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de todos los rangos al precio de 2€
 
-		self.numero_carton_salida_siguiente_2 = [self.carton_salida_siguiente2_rango1, self.carton_salida_siguiente2_rango2, self.carton_salida_siguiente2_rango3, self.carton_salida_siguiente2_rango4, self.carton_salida_siguiente2_rango5, self.carton_salida_siguiente2_rango6, self.carton_salida_siguiente2_rango7, self.carton_salida_siguiente2_rango8, self.carton_salida_siguiente2_rango9] 
+		# self.numero_carton_salida_siguiente_2 = [self.carton_salida_siguiente2_rango1, self.carton_salida_siguiente2_rango2, self.carton_salida_siguiente2_rango3, self.carton_salida_siguiente2_rango4, self.carton_salida_siguiente2_rango5, self.carton_salida_siguiente2_rango6, self.carton_salida_siguiente2_rango7, self.carton_salida_siguiente2_rango8, self.carton_salida_siguiente2_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de la partida siguiente de todos los rangos al precio de 2€
 
-		self.numero_carton_salida_3 = [self.carton_salida3_rango1, self.carton_salida3_rango2, self.carton_salida3_rango3, self.carton_salida3_rango4, self.carton_salida3_rango5, self.carton_salida3_rango6, self.carton_salida3_rango7, self.carton_salida3_rango8, self.carton_salida3_rango9] 
+		# self.numero_carton_salida_3 = [self.carton_salida3_rango1, self.carton_salida3_rango2, self.carton_salida3_rango3, self.carton_salida3_rango4, self.carton_salida3_rango5, self.carton_salida3_rango6, self.carton_salida3_rango7, self.carton_salida3_rango8, self.carton_salida3_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de todos los rangos al precio de 3€
 
-		self.numero_carton_salida_siguiente_3 = [self.carton_salida_siguiente3_rango1, self.carton_salida_siguiente3_rango2, self.carton_salida_siguiente3_rango3, self.carton_salida_siguiente3_rango4, self.carton_salida_siguiente3_rango5, self.carton_salida_siguiente3_rango6, self.carton_salida_siguiente3_rango7, self.carton_salida_siguiente3_rango8, self.carton_salida_siguiente3_rango9] 
+		# self.numero_carton_salida_siguiente_3 = [self.carton_salida_siguiente3_rango1, self.carton_salida_siguiente3_rango2, self.carton_salida_siguiente3_rango3, self.carton_salida_siguiente3_rango4, self.carton_salida_siguiente3_rango5, self.carton_salida_siguiente3_rango6, self.carton_salida_siguiente3_rango7, self.carton_salida_siguiente3_rango8, self.carton_salida_siguiente3_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de la partida siguiente de todos los rangos al precio de 3€
 
-		self.numero_carton_salida_6 = [self.carton_salida6_rango1, self.carton_salida6_rango2, self.carton_salida6_rango3, self.carton_salida6_rango4, self.carton_salida6_rango5, self.carton_salida6_rango6, self.carton_salida6_rango7, self.carton_salida6_rango8, self.carton_salida6_rango9] 
+		# self.numero_carton_salida_6 = [self.carton_salida6_rango1, self.carton_salida6_rango2, self.carton_salida6_rango3, self.carton_salida6_rango4, self.carton_salida6_rango5, self.carton_salida6_rango6, self.carton_salida6_rango7, self.carton_salida6_rango8, self.carton_salida6_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de todos los rangos al precio de 6€
 
-		self.numero_carton_salida_siguiente_6 = [self.carton_salida_siguiente6_rango1, self.carton_salida_siguiente6_rango2, self.carton_salida_siguiente6_rango3, self.carton_salida_siguiente6_rango4, self.carton_salida_siguiente6_rango5, self.carton_salida_siguiente6_rango6, self.carton_salida_siguiente6_rango7, self.carton_salida_siguiente6_rango8, self.carton_salida_siguiente6_rango9] 
+		# self.numero_carton_salida_siguiente_6 = [self.carton_salida_siguiente6_rango1, self.carton_salida_siguiente6_rango2, self.carton_salida_siguiente6_rango3, self.carton_salida_siguiente6_rango4, self.carton_salida_siguiente6_rango5, self.carton_salida_siguiente6_rango6, self.carton_salida_siguiente6_rango7, self.carton_salida_siguiente6_rango8, self.carton_salida_siguiente6_rango9] 
 		# Esta es la lista donde estan las variables del carton de salida de la partida siguiente de todos los rangos al precio de 6€
 
 		self.etiqueta_numero_carton_salida_cierre = [self.carton_salida_cierre_1, self.carton_salida_cierre_2, self.carton_salida_cierre_3, self.carton_salida_cierre_6]
 		# Esta es la lista donde estan las variables del carton de salida del rango de cierre
+
+		self.numero_carton_salida_siguiente_cierre = [self.carton_salida_siguiente_cierre, self.carton_salida_siguiente_cierre_2, self.carton_siguiente_salida_cierre_3, self.carton_salida_siguiente_cierre_6]
 
 		#-----------------------------------------------------------------------------------------------
 
@@ -338,6 +343,7 @@ class VentanaApp:
 						subframe.config(bg="#00FFFF")
 						self.etiqueta_numero_rango1_venta = tk.Label(subframe, text = "RANGO1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_numero_rango1_venta.pack()
+						indice_carton_salida_inicial = 0
 
 						etiquetas_series_venta=tk.Label(subframe, text = "SERIES", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
 						etiquetas_series_venta.pack()
@@ -349,27 +355,38 @@ class VentanaApp:
 						etiquetas_salidas_venta1.pack()
 
 						for h in range(4):
-							carton_salida_1 = self.Entry_numero_carton_salida[indice_carton_salida]
+							carton_salida_1 = self.Entry_numero_carton_salida[indice_carton_salida_inicial]
 							self.Entry_carton_salida = tk.Entry(subframe, text=carton_salida_1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
 							self.Entry_carton_salida.pack(pady=16)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
 							etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
 							etiqueta_vacia.pack()
+							indice_carton_salida_inicial += 1
 
 					elif subIdentificador == "SubFrameVenta11":
 						subframe.config(bg="#00FFFF")
 						self.etiqueta_cierre_venta = tk.Label(subframe, text = "CIERRE", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_cierre_venta.pack()
+						indice_carton_salida_cierre = 0
+
+						etiqueta_vacia2 = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
+						etiqueta_vacia2.pack(pady=38)
 
 						for r in range(4):
-							carton_salida_cierre = self.etiqueta_numero_carton_salida_cierre[indice_carton_salida]#indice_carton_salida
+							carton_salida_cierre = self.etiqueta_numero_carton_salida_cierre[indice_carton_salida_cierre]
 							self.etiqueta_carton_salida_cierre = tk.Label(subframe, text=carton_salida_cierre, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
-							self.etiqueta_carton_salida_cierre.pack(pady=16)
+							self.etiqueta_carton_salida_cierre.pack()
 							self.lista_carton_salida_cierre.append(self.etiqueta_carton_salida_cierre)
+
+							carton_salida_siguiente_cierre = self.numero_carton_salida_siguiente_cierre[indice_carton_salida_cierre]
+							self.etiqueta_carton_salida_siguiente_cierre = tk.Label(subframe, text=carton_salida_siguiente_cierre, fg="blue", bg = "white", font=("Times New Roman",15,"bold"), width=4)
+							self.etiqueta_carton_salida_siguiente_cierre.pack(pady=1)
+							self.lista_carton_salida_siguiente_cierre.append(self.etiqueta_carton_salida_siguiente_cierre)
 
 							etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
 							etiqueta_vacia.pack()
+							indice_carton_salida_cierre += 1
 
 					else:
 						rango = self.rangos[indice_rango_venta]
@@ -381,7 +398,7 @@ class VentanaApp:
 						etiquetas_series_venta.pack()
 
 						numero_series_por_rango_venta = self.numero_series_venta[indice_series_venta]
-						self.etiqueta_numero_series_por_rango_venta = tk.Label(subframe, text=numero_series_por_rango_venta, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=3)
+						self.etiqueta_numero_series_por_rango_venta = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=3)
 						self.etiqueta_numero_series_por_rango_venta.pack()
 						self.lista_numero_series_por_rango_venta.append(self.etiqueta_numero_series_por_rango_venta)
 						indice_series_venta += 1
@@ -391,15 +408,15 @@ class VentanaApp:
 
 						#------------------------------- Etiquetas Carton Salida ---------------------------------------
 						for h in range(4):
-							carton_salida_1 = self.numero_carton_salida_1[indice_carton_salida]
-							self.etiqueta_carton_salida1 = tk.Label(subframe, text=carton_salida_1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
-							self.etiqueta_carton_salida1.pack()
-							self.lista_carton_salida_1.append(self.etiqueta_carton_salida1)
+							carton_salida = self.numero_carton_salida_2_9[indice_carton_salida]
+							self.etiqueta_carton_salida_2_9 = tk.Label(subframe, text=carton_salida, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
+							self.etiqueta_carton_salida_2_9.pack()
+							self.lista_carton_salida_2_9.append(self.etiqueta_carton_salida_2_9)
 
-							carton_salida_siguiente_1 = self.numero_carton_salida_siguiente_1[indice_carton_salida]
-							self.etiqueta_carton_salida_siguiente1 = tk.Label(subframe, text=carton_salida_siguiente_1, fg="blue", bg = "white", font=("Times New Roman",15,"bold"), width=4)
-							self.etiqueta_carton_salida_siguiente1.pack(pady=1)
-							self.lista_carton_salida_siguiente_1.append(self.etiqueta_carton_salida_siguiente1)
+							carton_salida_siguiente_2_9 = self.numero_carton_salida_siguiente_2_9[indice_carton_salida]
+							self.etiqueta_carton_salida_siguiente_2_9 = tk.Label(subframe, text=carton_salida_siguiente_2_9, fg="blue", bg = "white", font=("Times New Roman",15,"bold"), width=4)
+							self.etiqueta_carton_salida_siguiente_2_9.pack(pady=1)
+							self.lista_carton_salida_siguiente_2_9.append(self.etiqueta_carton_salida_siguiente_2_9)
 
 							etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"))
 							etiqueta_vacia.pack()
@@ -505,7 +522,7 @@ class VentanaApp:
 						tk.Button(Subframe, command=lambda: salir(root), text= "SALIR", bg= "red", fg="White", font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command= cerrar
 
 					elif sub_identificador == "Frame11":
- 						boton_prepara_rectifica=tk.Button(Subframe, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2" )#,command = PreparaRectifica
+ 						boton_prepara_rectifica=tk.Button(Subframe, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2", command=lambda: comenzar(self.etiqueta_numero_series_por_rango1_venta, self.lista_numero_series_por_rango_venta,self.lista_series_frame_5))#,command = PreparaRectifica
  						boton_prepara_rectifica.pack()
 
  						boton_atras=tk.Button(Subframe, text="ATRAS", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7)
@@ -545,13 +562,13 @@ class VentanaApp:
 							if identificador == "boton1":
 								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx))
 							elif identificador == "boton2":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango(self.etiqueta_numero_series_por_rango1_venta, self.lista_series_frame_5, 0))
 							elif identificador == "boton3":
 								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx-2))
 							elif identificador == "boton4":
 								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+1))
 							elif identificador == "boton5":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 0))
 							elif identificador == "boton6":
 								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx-1))
 							elif identificador == "boton7":

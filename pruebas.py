@@ -3,34 +3,23 @@ import tkinter as tk
 class VentanaApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Caja Automática")
-        self.frames = {}
-        self.subframes = {}
+        self.lista_labels = []  # Lista para almacenar los labels
+        self.crear_labels()
+        self.crear_boton()
 
-        for i in range(5):
-            identificador = f"Frame{i+1}"
-            frame = tk.Frame(self.root)
-            frame.pack(side="top", fill="both", expand=True)
-            self.frames[identificador] = frame
+    def crear_labels(self):
+        for _ in range(5):
+            label = tk.Label(self.root, text="0", font=("Arial", 12), width=10)
+            label.pack()
+            self.lista_labels.append(label)
 
-            if identificador == "Frame1":
-                for j in range(11):
-                    subidentificador = f"SubFrameLiquidacion{j+1}"
-                    subframe = tk.Frame(frame, bg="white")
-                    subframe.pack(side="left", fill="both", expand=True)
-                    self.subframes[subidentificador] = subframe
-                    frame.grid_columnconfigure(j, weight=1)
+    def crear_boton(self):
+        boton = tk.Button(self.root, text="Actualizar", command=self.actualizar_label)
+        boton.pack()
 
-                    if subidentificador == "SubFrameLiquidacion11":
-                    	etiqueta_total_liquidacion = tk.Label(subframe, text="TOTAL", font=("Times New Roman", 20, "bold"))
-                    	etiqueta_total_liquidacion.pack()
-                    elif subidentificador == "SubFrameLiquidacion10":
-                    	subframe.configure(background="red")
-                    	etiqueta_cierre_liquidacion = tk.Label(subframe, text="CIERRE", font=("Times New Roman", 20, "bold"))
-                    	etiqueta_cierre_liquidacion.pack()
-                    else:
-                    	etiqueta_cierre_liquidacion = tk.Label(subframe, text="RANGO", font=("Times New Roman", 20, "bold"))
-                    	etiqueta_cierre_liquidacion.pack()
+    def actualizar_label(self):
+        from funciones import cambiar_texto_label
+        cambiar_texto_label(self.lista_labels)
 
 if __name__ == "__main__":
     root = tk.Tk()

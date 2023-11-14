@@ -6,7 +6,7 @@ import socket
 import re
 import time
 import threading
-from funciones import *
+from funciones import Funciones
 
 class VentanaApp:
 	def __init__(self, root):
@@ -45,9 +45,6 @@ class VentanaApp:
 		# Variables de los cartones que tiene cada rango en el frame de liquidacion
 
 		#------------------------------------------ Variables Venta -------------------------------------
-
-		self.entry_salida_1= 0; self.entry_salida_2=0; self.entry_salida_3=0; self.entry_salida_6=0;
-		#Variables de los Entry del carton de salida del rango 1
 
 		self.numero_series_por_rango_venta1=0; self.numero_series_por_rango_venta2=0; self.numero_series_por_rango_venta3=0; self.numero_series_por_rango_venta4=0;
 		self.numero_series_por_rango_venta5=0; self.numero_series_por_rango_venta6=0; self.numero_series_por_rango_venta7=0; self.numero_series_por_rango_venta8=0;
@@ -128,9 +125,6 @@ class VentanaApp:
 		# Lista de los cartones que tiene cada rango en la liquidacion
 
 		#---------------------------------------------- Listas Venta ---------------------------------
-
-		self.Entry_numero_carton_salida = [self.entry_salida_1, self.entry_salida_2, self.entry_salida_3, self.entry_salida_6]
-		# Esta es la lista de los Entry del rango de salida del rango 1
 
 		self.numero_series_venta = [self.numero_series_por_rango_venta1, self.numero_series_por_rango_venta2, self.numero_series_por_rango_venta3, self.numero_series_por_rango_venta4, self.numero_series_por_rango_venta5, self.numero_series_por_rango_venta6, self.numero_series_por_rango_venta7, self.numero_series_por_rango_venta8, self.numero_series_por_rango_venta9] 
 		#Esta es la lista donde se encuentra el numero de series asignadas a cada rango en la zona de venta
@@ -355,14 +349,12 @@ class VentanaApp:
 						etiquetas_salidas_venta1.pack()
 
 						for h in range(4):
-							carton_salida_1 = self.Entry_numero_carton_salida[indice_carton_salida_inicial]
-							self.Entry_carton_salida = tk.Entry(subframe, text=carton_salida_1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
+							self.Entry_carton_salida = tk.Entry(subframe, text="", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
 							self.Entry_carton_salida.pack(pady=16)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
 							etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
 							etiqueta_vacia.pack()
-							indice_carton_salida_inicial += 1
 
 					elif subIdentificador == "SubFrameVenta11":
 						subframe.config(bg="#00FFFF")
@@ -506,8 +498,6 @@ class VentanaApp:
 			if identificador == "Frame5":
 				numero_rango = 0
 				valor_actual = 0
-				
-				
 
 				for j in range(11):
 					sub_identificador = f"Frame{j+1}"
@@ -522,7 +512,7 @@ class VentanaApp:
 						tk.Button(Subframe, command=lambda: salir(root), text= "SALIR", bg= "red", fg="White", font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=10)#, command= cerrar
 
 					elif sub_identificador == "Frame11":
- 						boton_prepara_rectifica=tk.Button(Subframe, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2", command=lambda: comenzar(self.etiqueta_numero_series_por_rango1_venta, self.lista_numero_series_por_rango_venta,self.lista_series_frame_5))#,command = PreparaRectifica
+ 						boton_prepara_rectifica=tk.Button(Subframe, text="  COMENZAR  ", bg="#8B0000", fg ="#F0F8FF", font=("Times New Roman", 15,"bold"),cursor="hand2", command=self.copiar_contenido)#,command = PreparaRectifica
  						boton_prepara_rectifica.pack()
 
  						boton_atras=tk.Button(Subframe, text="ATRAS", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7)
@@ -532,10 +522,7 @@ class VentanaApp:
  						tk.Label(Subframe,text="CARBI-93 S.A.").pack()
  						tk.Label(Subframe,text="(Grupo Automáticos Canarios)").pack()
 
-						
-
 					else:
-						
 						rango = self.rangos[numero_rango]
 						etiqueta_numero_rango = tk.Label(Subframe, text = rango, font=("Times New Roman",15,"bold"))
 						etiqueta_numero_rango.pack()
@@ -544,11 +531,11 @@ class VentanaApp:
 						etiqueta_series = tk.Label(Subframe, text = "SERIES",bg="gray59", font=("Arial",10,"bold"))
 						etiqueta_series.pack()
 
-						valor = self.valores[valor_actual]
-						self.etiqueta_numero_series = tk.Label(Subframe, text=valor, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
+						self.etiqueta_numero_series = tk.Label(Subframe, text="0", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
 						self.etiqueta_numero_series.pack()
 						self.lista_series_frame_5.append(self.etiqueta_numero_series)
 						valor_actual += 1
+						self.funciones=Funciones(self.lista_series_frame_5)
 
 						#botones_frame_inferior()
 						
@@ -560,59 +547,59 @@ class VentanaApp:
 							self.numero_boton += 1
 
 							if identificador == "boton1":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i))
 							elif identificador == "boton2":
 								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango(self.etiqueta_numero_series_por_rango1_venta, self.lista_series_frame_5, 0))
 							elif identificador == "boton3":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx-2))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i-2))
 							elif identificador == "boton4":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+1))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+1))
 							elif identificador == "boton5":
 								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 0))
 							elif identificador == "boton6":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx-1))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i-1))
 							elif identificador == "boton7":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+2))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+2))
 							elif identificador == "boton8":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 1))
 							elif identificador == "boton9":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i))
 							elif identificador == "boton10":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+3))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+3))
 							elif identificador == "boton11":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 2))
 							elif identificador == "boton12":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+1))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i+1))
 							elif identificador == "boton13":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+4))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+4))
 							elif identificador == "boton14":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 3))
 							elif identificador == "boton15":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+2))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i+2))
 							elif identificador == "boton16":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+5))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+5))
 							elif identificador == "boton17":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 4))
 							elif identificador == "boton18":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+3))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i+3))
 							elif identificador == "boton19":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+6))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+6))
 							elif identificador == "boton20":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 5))
 							elif identificador == "boton21":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+4))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i+4))
 							elif identificador == "boton22":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+7))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+7))
 							elif identificador == "boton23":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 6))
 							elif identificador == "boton24":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+5))
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i+5))
 							elif identificador == "boton25":
-								boton.config(image=self.photoSube, command=lambda idx=i: sube_serie(self, idx+8))
+								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_contenido(i+8))
 							elif identificador == "boton26":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2")
+								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 7))
 							elif identificador == "boton27":
-								boton.config(image=self.photoBaja, command=lambda idx=i: baja_serie(self, idx+6))					
+								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_contenido(i+6))					
 
 						if self.bandera:
 							Subframe.config(bg="#C0C0C0")
@@ -625,8 +612,14 @@ class VentanaApp:
 							etiqueta_series.config(bg="gray59")
 							self.bandera = True
 
-# def probar():
-# 	app.etiqueta_liquidacion["liquidacion_liqui1"].config(text=100)
+		#self.funciones=Funciones(self.lista_series_frame_5)
+	def incrementar_contenido(self, index):
+		self.funciones.incrementar_contenido(index)
+	def decrementar_contenido(self, index):
+		self.funciones.decrementar_contenido(index)
+	def copiar_contenido(self):
+		self.funciones.copiar_contenido(self.lista_series_frame_5[1:], self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
+
 	
 if __name__ == "__main__":
 	root = tk.Tk()

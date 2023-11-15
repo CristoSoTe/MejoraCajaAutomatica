@@ -6,7 +6,7 @@ class Funciones:
 		contenido_actual = int(self.labels[index].cget("text"))
 		nuevo_contenido = contenido_actual + 1
 		self.labels[index].config(text=str(nuevo_contenido))
-
+		
 	def decrementar_contenido(self, index):
 		contenido_actual = int(self.labels[index].cget("text"))
 		if contenido_actual > 0:
@@ -20,9 +20,6 @@ class Funciones:
 		for label_origen, label_destino in zip(origen, destino):
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
-
-
-
 
 	# def sube_serie(self, num):
 	# 	ventana.valores[num] += 1

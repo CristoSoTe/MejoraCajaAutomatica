@@ -612,7 +612,6 @@ class VentanaApp:
 							etiqueta_series.config(bg="gray59")
 							self.bandera = True
 
-		#self.funciones=Funciones(self.lista_series_frame_5)
 	def incrementar_contenido(self, index):
 		self.funciones.incrementar_contenido(index)
 	def decrementar_contenido(self, index):

@@ -40,3 +40,4 @@ class Funciones:
 	def salir(self, root):
 		root.destroy()
 		exit()
+

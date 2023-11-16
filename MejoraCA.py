@@ -613,19 +613,22 @@ class VentanaApp:
 							etiqueta_series.config(bg="gray59")
 							self.bandera = True
 
-	self.funciones_ventana = Funciones(labels=[])
+		self.funciones= Funciones(labels=[])
 
 	def subir_series_a_liquidacion(self):
 		self.series_en_venta.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion)
 
 	def incrementar_serie(self, index): # Funcion que aumenta una serie pulsando el boton del rango elegido
 		self.series_frame_5.incrementar_serie(index)
+
 	def decrementar_serie(self, index): # Funcion que disminuye una serie pulsando el boton del rango elegido
 		self.series_frame_5.decrementar_serie(index)
+
 	def sube_todas_las_series_a_venta(self):
 		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5[1:], self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
+
 	def salir(self):
-		self.funciones_ventana.salir(self.root)
+		self.funciones.salir(self.root)
 
 	
 if __name__ == "__main__":

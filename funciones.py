@@ -29,12 +29,6 @@ class Funciones:
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
 
-	@staticmethod
-	def salir(self):
+	def salir(self, root):
 		root.destroy()
-
-
-
-
-			#self.series_frame_5=Funciones(self.lista_series_frame_5)
-			#self.series_en_venta=Funciones(self.lista_numero_series_por_rango_venta)
+		exit()

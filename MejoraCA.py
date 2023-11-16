@@ -191,10 +191,10 @@ class VentanaApp:
 						self.etiqueta_liquidacion_rango1.pack()
 						self.lista_liquidacion.append(self.etiqueta_liquidacion)
 
-						series_liquidacion_rango1=tk.Label(subframe, text = "SERIES + Pico", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
-						series_liquidacion_rango1.pack()
+						self.series_liquidacion_rango1=tk.Label(subframe, text = "SERIES + Pico", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
+						self.series_liquidacion_rango1.pack()
 
-						self.etiqueta_numero_series_liquidacion_rango1 = tk.Label(subframe, text=self.series_liquidacion_rango1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=4)
+						self.etiqueta_numero_series_liquidacion_rango1 = tk.Label(subframe, text="0", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=4)
 						self.etiqueta_numero_series_liquidacion_rango1.pack()
 						self.lista_numero_series_liquidacion.append(self.etiqueta_numero_series_liquidacion_rango1)
 
@@ -394,6 +394,7 @@ class VentanaApp:
 						self.etiqueta_numero_series_por_rango_venta.pack()
 						self.lista_numero_series_por_rango_venta.append(self.etiqueta_numero_series_por_rango_venta)
 						self.series_en_venta=Funciones(self.lista_numero_series_por_rango_venta)
+
 						indice_series_venta += 1
 
 						etiquetas_salidas_venta=tk.Label(subframe, text = "SALIDAS", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
@@ -550,55 +551,55 @@ class VentanaApp:
 							if identificador == "boton1":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i))
 							elif identificador == "boton2":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango(self.etiqueta_numero_series_por_rango1_venta, self.lista_series_frame_5, 0))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango(self.etiqueta_numero_series_por_rango1_venta, self.lista_series_frame_5, 0))
 							elif identificador == "boton3":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i-2))
 							elif identificador == "boton4":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+1))
 							elif identificador == "boton5":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 0))
+								boton.config(text=f"SUBIR2{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(1))
 							elif identificador == "boton6":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i-1))
 							elif identificador == "boton7":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+2))
 							elif identificador == "boton8":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 1))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(2))
 							elif identificador == "boton9":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i))
 							elif identificador == "boton10":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+3))
 							elif identificador == "boton11":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 2))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(3))
 							elif identificador == "boton12":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i+1))
 							elif identificador == "boton13":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+4))
 							elif identificador == "boton14":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 3))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(4))
 							elif identificador == "boton15":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i+2))
 							elif identificador == "boton16":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+5))
 							elif identificador == "boton17":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 4))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(5))
 							elif identificador == "boton18":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i+3))
 							elif identificador == "boton19":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+6))
 							elif identificador == "boton20":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 5))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(6))
 							elif identificador == "boton21":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i+4))
 							elif identificador == "boton22":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+7))
 							elif identificador == "boton23":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 6))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(7))
 							elif identificador == "boton24":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i+5))
 							elif identificador == "boton25":
 								boton.config(image=self.photoSube, command=lambda i=i: self.incrementar_serie(i+8))
 							elif identificador == "boton26":
-								boton.config(text="SUBIR", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: sube_a_venta_un_rango_2_9(self.lista_numero_series_por_rango_venta,self.lista_series_frame_5, 7))
+								boton.config(text=f"SUBIR{i}", bg="#8B0000", fg ="#F0F8FF", cursor="hand2", command=lambda: self.sube_a_venta_un_rango_2_9(8))
 							elif identificador == "boton27":
 								boton.config(image=self.photoBaja, command=lambda i=i: self.decrementar_serie(i+6))					
 
@@ -615,21 +616,26 @@ class VentanaApp:
 
 		self.funciones= Funciones(labels=[])
 
+
+
 	def subir_series_a_liquidacion(self):
-		self.series_en_venta.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion)
-
-	def incrementar_serie(self, index): # Funcion que aumenta una serie pulsando el boton del rango elegido
-		self.series_frame_5.incrementar_serie(index)
-
-	def decrementar_serie(self, index): # Funcion que disminuye una serie pulsando el boton del rango elegido
-		self.series_frame_5.decrementar_serie(index)
+		self.series_en_venta.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)
 
 	def sube_todas_las_series_a_venta(self):
-		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5[1:], self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
+		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
+	def sube_a_venta_un_rango_2_9(self, index):
+		self.series_frame_5.sube_a_venta_un_rango_2_9(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, index)
+
+	def incrementar_serie(self, index): # Funcion que aumenta una serie pulsando el boton subir del rango elegido
+		self.series_frame_5.incrementar_serie(index)
+
+	def decrementar_serie(self, index): # Funcion que disminuye una serie pulsando el boton bajar del rango elegido
+		self.series_frame_5.decrementar_serie(index)
+
+	
 
 	def salir(self):
 		self.funciones.salir(self.root)
-
 	
 if __name__ == "__main__":
 	root = tk.Tk()

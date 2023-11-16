@@ -15,7 +15,6 @@ class Funciones:
 
 	@staticmethod
 	def sube_todas_las_series_a_venta(origen, destino, etiqueta_rango1):
-		print(len(origen))
 		contenido_rango1 = origen[0].cget("text")
 		etiqueta_rango1.config(text=contenido_rango1)
 		for label_origen, label_destino in zip(origen[1:], destino):
@@ -30,11 +29,16 @@ class Funciones:
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
 
-	def sube_a_venta_un_rango_2_9(self,origen, destino, index):
-		print("Hola")
-		print(len(origen))
-		contenido_actual=origen[index].cget("text")
-		destino[index-1].config(text=contenido_actual)
+		Funciones.sube_todas_las_series_a_venta(origen, destino, etiqueta_rango1)
+	
+
+	def sube_a_venta_un_rango_2_9(self,origen, destino, etiqueta_rango1, index):
+		if index == 0:
+			contenido_rango1 = origen[0].cget("text")
+			etiqueta_rango1.config(text=contenido_rango1)
+		else:
+			contenido_actual=origen[index].cget("text")
+			destino[index-1].config(text=contenido_actual)
 
 
 	def salir(self, root):

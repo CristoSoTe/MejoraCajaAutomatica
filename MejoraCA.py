@@ -34,8 +34,8 @@ class VentanaApp:
 		self.liquidacion6=0; self.liquidacion7=0; self.liquidacion8=0; self.liquidacion9=0; self.liquidacion_cierre=0; self.liquidacion_total=0;
 		# Variables de lo que tiene que liquidar cada rango
 
-		self.series_liquidacion_rango1="0 + 0"; self.series_liquidacion_rango2=0; self.series_liquidacion_rango3=0; self.series_liquidacion_rango4=0; self.series_liquidacion_rango5=0;
-		self.series_liquidacion_rango6=0; self.series_liquidacion_rango7=0; self.series_liquidacion_rango8=0; self.series_liquidacion_rango9=0; self.series_liquidacion_cierre="0 + 0";
+		self.series_liquidacion_rango1=0; self.series_liquidacion_rango2=0; self.series_liquidacion_rango3=0; self.series_liquidacion_rango4=0; self.series_liquidacion_rango5=0;
+		self.series_liquidacion_rango6=0; self.series_liquidacion_rango7=0; self.series_liquidacion_rango8=0; self.series_liquidacion_rango9=0; self.series_liquidacion_cierre=0;
 		self.series_liquidacion_total=0;
 		# Variables del numero de series que tiene cada rango en el frame de liquidacion
 
@@ -187,9 +187,9 @@ class VentanaApp:
 						self.etiqueta_numero_rango1_liquidacion = tk.Label(subframe, text = "RANGO1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_numero_rango1_liquidacion.pack()
 
-						self.etiqueta_liquidacion_rango1 = tk.Label(subframe, text=self.liquidacion1, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
+						self.etiqueta_liquidacion_rango1 = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
 						self.etiqueta_liquidacion_rango1.pack()
-						self.lista_liquidacion.append(self.etiqueta_liquidacion)
+						self.lista_liquidacion.append(self.etiqueta_liquidacion_rango1)
 
 						self.series_liquidacion_rango1=tk.Label(subframe, text = "SERIES + Pico", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
 						self.series_liquidacion_rango1.pack()
@@ -307,7 +307,7 @@ class VentanaApp:
 				for etiqueta_premio in self.etiquetas_premios:
 					tk.Label(frame, text = etiqueta_premio, bg="blue", fg= "white", font=("Times New Roman",13,"bold"), anchor="e", justify="right").grid(row = valor_fila, column = valor_columna, sticky = "ew", padx= 10)
 					valor_columna += 1
-					entrada = tk.Entry(frame)
+					entrada = tk.Entry(frame, font=("Times New Roman",13,"bold"), justify="right", width=14)
 					entrada.grid(row = valor_fila, column = valor_columna, sticky = "ew")
 					valor_columna += 1
 
@@ -329,11 +329,11 @@ class VentanaApp:
 				dato_impresos = self.entradas[2]
 				self.impresos = dato_impresos.get()
 
-				self.entradas[3].insert(0, int(self.impresos) * float(self.precio))
+				self.entradas[3].insert(0, round(int(self.impresos) * float(self.precio),2))
 				dato_recaudado = self.entradas[3]
 				self.recaudado = dato_recaudado.get()
 
-				self.entradas[4].insert(0, round(float(self.recaudado) * 0.085,2))
+				self.entradas[4].insert(0, round(float(self.recaudado) * 0.085, 2))
 				dato_linea = self.entradas[4]
 				self.linea = dato_linea.get()
 
@@ -352,7 +352,19 @@ class VentanaApp:
 				self.entradas[8].insert(0, "0")
 				dato_informaticos = self.entradas[8]
 				self.informaticos = dato_informaticos.get()
-# para insertar datos en un Entry 
+
+				self.entradas[9].insert(0, round((int(self.impresos) * 1.5) * 0.37, 2))
+				dato_caja_impresos = self.entradas[9]
+				self.caja_impresos = dato_caja_impresos.get()
+
+				self.entradas[10].insert(0, round(float(self.recaudado) * 0.37, 2))
+				dato_bingo = self.entradas[10]
+				self.bingo = dato_bingo.get()
+
+				self.entradas[11].insert(0, "100")
+				dato_prima_extra = self.entradas[11]
+				self.prima_extra = dato_prima_extra.get()
+ 
 				
 # -------------------------------- Frame de venta -----------------------------------
 
@@ -659,17 +671,14 @@ class VentanaApp:
 		self.funciones= Funciones(labels=[])
 
 	def subir_series_a_liquidacion(self):
-		self.series_en_venta.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)
-		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
-
-	def calcula_liquidacion(self):
-		precio = 0
-		self.series_frame_5.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, precio)
+		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)#series_en_venta
+		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
+		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
 
 	def sube_todas_las_series_a_venta(self):
-		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
+		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
 	def sube_a_venta_un_rango_2_9(self, indice):
-		self.series_frame_5.sube_a_venta_un_rango_2_9(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta, indice)
+		self.funciones.sube_a_venta_un_rango_2_9(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta, indice)#series_frame_5
 
 	def incrementar_serie(self, indice): # Funcion que aumenta una serie pulsando el boton subir del rango elegido
 		self.series_frame_5.incrementar_serie(indice)

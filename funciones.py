@@ -37,15 +37,15 @@ class Funciones:
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
 
-	def calcula_liquidacion(origen, destino, precio):
-		indice = 0
-		for elemento in origen:
-			resultado = elemento * precio
-			self.lista_liquidacion[indice].config(text=elemento)
+	def calcula_liquidacion(self, origen, destino, etiqueta_rango1, precio):
+		contenido_rango1 = etiqueta_rango1.cget("text")
+		destino[0].config(text=int(contenido_rango1) * 6 * float(precio))
+		indice = 1
+		for elemento in origen[1:]:
+			dato= round(int(elemento.cget("text")) * 6, 2)
+			resultado = dato * float(precio)
+			destino[indice].config(text=resultado)
 			indice += 1
-
-	
-
 
 	def salir(self, root):
 		root.destroy()

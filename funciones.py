@@ -32,20 +32,41 @@ class Funciones:
 	@staticmethod
 	def subir_series_a_liquidacion(origen, destino, etiqueta_rango1):
 		contenido_rango1 = etiqueta_rango1.cget("text")
-		destino[0].config(text=contenido_rango1)
+		destino[0].config(text=f"{contenido_rango1} + {self.pico}")
 		for label_origen, label_destino in zip(origen, destino[1:9]):
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
 
 	def calcula_liquidacion(self, origen, destino, etiqueta_rango1, precio):
-		contenido_rango1 = etiqueta_rango1.cget("text")
-		destino[0].config(text=int(contenido_rango1) * 6 * float(precio))
+		contenido_rango1 = origen[0].cget("text")
+		primer_elemento = contenido_rango1.split()[0].strip()
+		liquidacion_rango1 = ((int(primer_elemento) * 6) + self.pico) * float(precio)
+		destino[0].config(text=f"{liquidacion_rango1}€")
 		indice = 1
 		for elemento in origen[1:]:
 			dato= round(int(elemento.cget("text")) * 6, 2)
 			resultado = dato * float(precio)
-			destino[indice].config(text=resultado)
+			destino[indice].config(text=f"{resultado}€")
 			indice += 1
+
+	def pico_salida(self, salida):
+		self.pico_sal = 0
+		try:
+			if salida == 0 or salida == "":
+				pass
+			else:
+				self.pico_sal = 7 - (int(salida) % 6)
+				if self.pico_sal == 7:
+					print(pico_sal)
+					return 1
+				elif self.pico_sal == 6:
+					print(pico_sal)
+					return 0
+				else:
+					print(pico_sal)
+					return self.pico_sal
+		except:
+			pass
 
 	def salir(self, root):
 		root.destroy()

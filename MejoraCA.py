@@ -303,15 +303,57 @@ class VentanaApp:
 				frame.config(bg = "blue")
 				valor_fila = 0
 				valor_columna = 0
+				self.entradas = []
 				for etiqueta_premio in self.etiquetas_premios:
 					tk.Label(frame, text = etiqueta_premio, bg="blue", fg= "white", font=("Times New Roman",13,"bold"), anchor="e", justify="right").grid(row = valor_fila, column = valor_columna, sticky = "ew", padx= 10)
 					valor_columna += 1
-					tk.Entry(frame).grid(row = valor_fila, column = valor_columna, sticky = "ew")
+					entrada = tk.Entry(frame)
+					entrada.grid(row = valor_fila, column = valor_columna, sticky = "ew")
 					valor_columna += 1
+
+					self.entradas.append(entrada)
+
 					if valor_columna > 11:
 						valor_fila = 1
 						valor_columna = 0
 
+				self.entradas[0].insert(0, "1.5")
+				dato_precio =self.entradas[0]
+				self.precio= dato_precio.get()
+
+				self.entradas[1].insert(0, "1")
+				dato_desde = self.entradas[1]
+				self.desde = dato_desde.get()
+
+				self.entradas[2].insert(0, "100")
+				dato_impresos = self.entradas[2]
+				self.impresos = dato_impresos.get()
+
+				self.entradas[3].insert(0, int(self.impresos) * float(self.precio))
+				dato_recaudado = self.entradas[3]
+				self.recaudado = dato_recaudado.get()
+
+				self.entradas[4].insert(0, round(float(self.recaudado) * 0.085,2))
+				dato_linea = self.entradas[4]
+				self.linea = dato_linea.get()
+
+				self.entradas[5].insert(0, "100")
+				dato_prima = self.entradas[5]
+				self.prima = dato_prima.get()
+
+				self.entradas[6].insert(0, 100)
+				dato_vendidos = self.entradas[6]				
+				self.vendidos = dato_vendidos.get()
+
+				self.entradas[7].insert(0, "100")
+				dato_al = self.entradas[7]
+				self.al = dato_al.get()
+
+				self.entradas[8].insert(0, "0")
+				dato_informaticos = self.entradas[8]
+				self.informaticos = dato_informaticos.get()
+# para insertar datos en un Entry 
+				
 # -------------------------------- Frame de venta -----------------------------------
 
 			if identificador == "Frame3":
@@ -616,21 +658,24 @@ class VentanaApp:
 
 		self.funciones= Funciones(labels=[])
 
-
-
 	def subir_series_a_liquidacion(self):
 		self.series_en_venta.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)
+		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
+
+	def calcula_liquidacion(self):
+		precio = 0
+		self.series_frame_5.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, precio)
 
 	def sube_todas_las_series_a_venta(self):
 		self.series_frame_5.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)
-	def sube_a_venta_un_rango_2_9(self, index):
-		self.series_frame_5.sube_a_venta_un_rango_2_9(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta, index)
+	def sube_a_venta_un_rango_2_9(self, indice):
+		self.series_frame_5.sube_a_venta_un_rango_2_9(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta, indice)
 
-	def incrementar_serie(self, index): # Funcion que aumenta una serie pulsando el boton subir del rango elegido
-		self.series_frame_5.incrementar_serie(index)
+	def incrementar_serie(self, indice): # Funcion que aumenta una serie pulsando el boton subir del rango elegido
+		self.series_frame_5.incrementar_serie(indice)
 
-	def decrementar_serie(self, index): # Funcion que disminuye una serie pulsando el boton bajar del rango elegido
-		self.series_frame_5.decrementar_serie(index)
+	def decrementar_serie(self, indice): # Funcion que disminuye una serie pulsando el boton bajar del rango elegido
+		self.series_frame_5.decrementar_serie(indice)
 
 	
 

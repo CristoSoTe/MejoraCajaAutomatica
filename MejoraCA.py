@@ -223,7 +223,7 @@ class VentanaApp:
 				dato_precio =self.entradas[0]
 				self.precio= dato_precio.get()
 
-				self.entradas[1].insert(0, "1")
+				self.entradas[1].insert(0, "1790")
 				dato_desde = self.entradas[1]
 				self.desde = dato_desde.get()
 
@@ -309,7 +309,7 @@ class VentanaApp:
 							self.Entry_carton_salida.pack(pady=16)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
-						self.lista_Entry_carton_salida[0].insert(0, "100")
+						self.lista_Entry_carton_salida[0].insert(0, "1790")
 						dato_salida1 =self.lista_Entry_carton_salida[0]
 						self.salida1= dato_salida1.get()
 

@@ -56,9 +56,14 @@ class Funciones:
 			indice += 1
 
 	def cartones_en_liquidacion(self,origen, destino, salida):
-		destino[0].config(text=salida)
-
-
+		primero = origen[0].cget("text")
+		numeros = [int(n) for n in primero.split() if n.isdigit()]
+		resultado = ((numeros[0] * 6) + numeros[1]) + int(salida)
+		if resultado > 1800:
+			diferencia = resultado - 1800			
+			destino[0].config(text=f"{salida} - {diferencia}")
+		else:
+			destino[0].config(text=f"{salida} - {int(salida) + resultado}")
 
 	def pico_salida(self, salida):
 		if salida == 0 or salida == "":

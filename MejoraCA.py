@@ -460,7 +460,7 @@ class VentanaApp:
 				# 	SubFrame.grid_columnconfigure(j, weight=1)
 
 				#if sub_identificador == "SubFrameCerrar1":
-				tk.Button(frame, text="CERRAR", command=self.subir_series_a_liquidacion, bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=7)
+				tk.Button(frame, text="CERRAR", command=self.liquidar_partida, bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(pady=7)
 				frame.config(bg="blue")
 					# elif sub_identificador == "SubFrameCerrar2":
 					# 	tk.Button(SubFrame, text="ATRAS", bg= "Green", fg="White",font=("Times New Roman",15,"bold"),cursor="hand2", width=7).pack(padx=10, side=tk.RIGHT)
@@ -587,11 +587,14 @@ class VentanaApp:
 
 		self.funciones= Funciones(labels=[])
 
-	def subir_series_a_liquidacion(self):
+	def liquidar_partida(self):
 		self.funciones.pico_salida(self.salida1)
-		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)#series_en_venta
-		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
+
+		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)#series_en_liquidacion
+
 		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
+		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
+		
 
 	def sube_todas_las_series_a_venta(self):
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5

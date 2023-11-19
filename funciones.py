@@ -1,6 +1,7 @@
 class Funciones:
 	def __init__(self, labels):
 		self.labels = labels
+		self.pico_sal = 0
 
 	def incrementar_serie(self, indice):
 		contenido_actual = int(self.labels[indice].cget("text"))
@@ -29,10 +30,12 @@ class Funciones:
 			contenido_actual=origen[indice].cget("text")
 			destino[indice-1].config(text=contenido_actual)
 
-	@staticmethod
-	def subir_series_a_liquidacion(origen, destino, etiqueta_rango1):
+	#@staticmethod
+	def subir_series_a_liquidacion(self, origen, destino, etiqueta_rango1):
+		self.pico = self.pico_sal
 		contenido_rango1 = etiqueta_rango1.cget("text")
-		destino[0].config(text=f"{contenido_rango1} + {self.pico}")
+		texto_etiqueta = f"{contenido_rango1}  <small>{self.pico}</small>"
+		destino[0].config(text=texto_etiqueta)#f"{contenido_rango1} + {self.pico}"
 		for label_origen, label_destino in zip(origen, destino[1:9]):
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
@@ -50,23 +53,16 @@ class Funciones:
 			indice += 1
 
 	def pico_salida(self, salida):
-		self.pico_sal = 0
-		try:
-			if salida == 0 or salida == "":
-				pass
-			else:
-				self.pico_sal = 7 - (int(salida) % 6)
-				if self.pico_sal == 7:
-					print(pico_sal)
-					return 1
-				elif self.pico_sal == 6:
-					print(pico_sal)
-					return 0
-				else:
-					print(pico_sal)
-					return self.pico_sal
-		except:
+		if salida == 0 or salida == "":
 			pass
+		else:
+			self.pico_sal = 7 - (int(salida) % 6)
+			if self.pico_sal == 7:
+				return 1
+			elif self.pico_sal == 6:
+				return 0
+			else:
+				return self.pico_sal
 
 	def salir(self, root):
 		root.destroy()

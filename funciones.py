@@ -1,3 +1,5 @@
+from tkinter import font
+
 class Funciones:
 	def __init__(self, labels):
 		self.labels = labels
@@ -34,8 +36,9 @@ class Funciones:
 	def subir_series_a_liquidacion(self, origen, destino, etiqueta_rango1):
 		self.pico = self.pico_sal
 		contenido_rango1 = etiqueta_rango1.cget("text")
-		texto_etiqueta = f"{contenido_rango1}  <small>{self.pico}</small>"
-		destino[0].config(text=texto_etiqueta)#f"{contenido_rango1} + {self.pico}"
+		#texto_etiqueta = f"{contenido_rango1} + {self.pico}"
+		destino[0].config(text=f"{contenido_rango1} + {self.pico}")
+
 		for label_origen, label_destino in zip(origen, destino[1:9]):
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
@@ -51,6 +54,11 @@ class Funciones:
 			resultado = dato * float(precio)
 			destino[indice].config(text=f"{resultado}€")
 			indice += 1
+
+	def cartones_en_liquidacion(self,origen, destino, salida):
+		destino[0].config(text=salida)
+
+
 
 	def pico_salida(self, salida):
 		if salida == 0 or salida == "":

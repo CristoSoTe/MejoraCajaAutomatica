@@ -7,6 +7,7 @@ import re
 import time
 import threading
 from funciones import Funciones
+from tkinter import font
 
 class VentanaApp:
 	def __init__(self, root):
@@ -593,6 +594,9 @@ class VentanaApp:
 		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)#series_en_liquidacion
 
 		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
+
+		self.funciones.cartones_en_liquidacion(self.lista_numero_series_liquidacion, self.lista_cartones_liquidacion, self.salida1)
+
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
 		
 

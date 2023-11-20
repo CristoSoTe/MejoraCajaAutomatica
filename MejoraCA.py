@@ -128,7 +128,7 @@ class VentanaApp:
 
 						self.etiqueta_cartones_liquidacion_cierre = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=8)
 						self.etiqueta_cartones_liquidacion_cierre.pack()
-						self.lista_cartones_liquidacion.append(self.etiqueta_cartones_liquidacion_rango1)
+						self.lista_cartones_liquidacion.append(self.etiqueta_cartones_liquidacion_cierre)
 
 					elif SubIdentificador == "SubFrameLiquidacion11":
 						subframe.config(bg="#0099ff")
@@ -309,7 +309,7 @@ class VentanaApp:
 							self.Entry_carton_salida.pack(pady=16)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
-						self.lista_Entry_carton_salida[0].insert(0, "1790")
+						self.lista_Entry_carton_salida[0].insert(0, "1750")
 						dato_salida1 =self.lista_Entry_carton_salida[0]
 						self.salida1= dato_salida1.get()
 
@@ -592,10 +592,20 @@ class VentanaApp:
 		self.funciones.pico_salida(self.salida1)
 
 		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)#series_en_liquidacion
-
 		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
 
+
+
+
+
+
+
 		self.funciones.cartones_en_liquidacion(self.lista_numero_series_liquidacion, self.lista_cartones_liquidacion, self.salida1)
+
+
+
+
+
 
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
 		

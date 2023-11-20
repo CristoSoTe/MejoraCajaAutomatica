@@ -55,6 +55,11 @@ class Funciones:
 			destino[indice].config(text=f"{resultado}€")
 			indice += 1
 
+
+
+
+
+
 	def cartones_en_liquidacion(self,origen, destino, salida):
 		primero = origen[0].cget("text")
 		numeros = [int(n) for n in primero.split() if n.isdigit()]
@@ -63,7 +68,34 @@ class Funciones:
 			diferencia = resultado - 1800			
 			destino[0].config(text=f"{salida} - {diferencia}")
 		else:
-			destino[0].config(text=f"{salida} - {int(salida) + resultado}")
+			diferencia=resultado - 1
+			destino[0].config(text=f"{salida} - {diferencia}")
+		indice_destino = 1
+		indice_origen = 1
+		carton_inicial = diferencia + 1
+
+		for i in destino[1:]:
+			if int(origen[indice_origen].cget("text")) > 0: 
+				carton_final=(int(origen[indice_origen].cget("text")) * 6 + diferencia)
+				if carton_final > 1800:
+					if carton_inicial > 1800:
+						carton_inicial = carton_inicial - 1800
+					carton_final = carton_final - 1800
+					destino[indice_destino].config(text=f"{carton_inicial} - {carton_final}")
+				else:
+					destino[indice_destino].config(text=f"{carton_inicial} - {carton_final}")
+				carton_inicial = carton_final + 1
+				diferencia = carton_final
+			else:
+				pass
+			indice_destino +=1
+			indice_origen += 1
+
+
+
+
+
+
 
 	def pico_salida(self, salida):
 		if salida == 0 or salida == "":
@@ -71,11 +103,11 @@ class Funciones:
 		else:
 			self.pico_sal = 7 - (int(salida) % 6)
 			if self.pico_sal == 7:
-				return 1
+				self.pico_sal = 1
 			elif self.pico_sal == 6:
-				return 0
-			else:
-				return self.pico_sal
+				self.pico_sal = 0
+			# else:
+			# 	return self.pico_sal
 
 	def salir(self, root):
 		root.destroy()

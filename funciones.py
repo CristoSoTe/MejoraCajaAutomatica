@@ -16,7 +16,7 @@ class Funciones:
 			nuevo_contenido = contenido_actual - 1
 			self.labels[indice].config(text=str(nuevo_contenido))
 
-	@staticmethod
+	#@staticmethod
 	def sube_todas_las_series_a_venta(origen, destino, etiqueta_rango1):
 		contenido_rango1 = origen[0].cget("text")
 		etiqueta_rango1.config(text=contenido_rango1)
@@ -55,11 +55,6 @@ class Funciones:
 			destino[indice].config(text=f"{resultado}€")
 			indice += 1
 
-
-
-
-
-
 	def cartones_en_liquidacion(self,origen, destino, salida):
 		primero = origen[0].cget("text")
 		numeros = [int(n) for n in primero.split() if n.isdigit()]
@@ -87,15 +82,9 @@ class Funciones:
 				carton_inicial = carton_final + 1
 				diferencia = carton_final
 			else:
-				pass
+				destino[indice_destino].config(text=0)
 			indice_destino +=1
 			indice_origen += 1
-
-
-
-
-
-
 
 	def pico_salida(self, salida):
 		if salida == 0 or salida == "":
@@ -112,4 +101,3 @@ class Funciones:
 	def salir(self, root):
 		root.destroy()
 		exit()
-

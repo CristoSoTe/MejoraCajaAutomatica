@@ -285,9 +285,9 @@ class VentanaApp:
 					if subIdentificador == "SubFrameVenta1":
 						subframe.config( bg="gray59")
 						lista_precios = ["1,5€", "2€", "3€", "6€"]
-						tk.Label(subframe, text="Precios", font=("Times New Roman",20,"bold"), bg="gray59").pack(pady=40)
+						tk.Label(subframe, text="Precios", font=("Times New Roman",20,"bold"), bg="gray59").pack(pady=45)
 						for i in lista_precios:
-							tk.Label(subframe, text= i, font=("Times New Roman",20,"bold"), bg="gray59", fg="blue").pack(pady=18)
+							tk.Label(subframe, text= i, font=("Times New Roman",20,"bold"), bg="gray59", fg="blue").pack(pady=15)
 
 					elif subIdentificador == "SubFrameVenta2":
 						subframe.config(bg="#00FFFF")
@@ -306,7 +306,7 @@ class VentanaApp:
 
 						for h in range(4):
 							self.Entry_carton_salida = tk.Entry(subframe, text="", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6, justify="right")
-							self.Entry_carton_salida.pack(pady=16)
+							self.Entry_carton_salida.pack(pady=20)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
 						self.lista_Entry_carton_salida[0].insert(0, "1750")

@@ -28,6 +28,7 @@ class VentanaApp:
 		self.photoBaja=tk.PhotoImage(file=r"c:\CajaMesaControl\flechaBaja.png")
 
 		self.pico_salida=0
+		self.desde=0
 
 		#------------------------------------------- Variables Liquidacion --------------------------
 
@@ -223,11 +224,11 @@ class VentanaApp:
 				dato_precio =self.entradas[0]
 				self.precio= dato_precio.get()
 
-				self.entradas[1].insert(0, "1790")
+				self.entradas[1].insert(0, "1000")
 				dato_desde = self.entradas[1]
 				self.desde = dato_desde.get()
 
-				self.entradas[2].insert(0, "100")
+				self.entradas[2].insert(0, "821")
 				dato_impresos = self.entradas[2]
 				self.impresos = dato_impresos.get()
 
@@ -247,7 +248,7 @@ class VentanaApp:
 				dato_vendidos = self.entradas[6]				
 				self.vendidos = dato_vendidos.get()
 
-				self.entradas[7].insert(0, "100")
+				self.entradas[7].insert(0, "20")
 				dato_al = self.entradas[7]
 				self.al = dato_al.get()
 
@@ -309,19 +310,19 @@ class VentanaApp:
 							self.Entry_carton_salida.pack(pady=20)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
-						self.lista_Entry_carton_salida[0].insert(0, "1750")
+						self.lista_Entry_carton_salida[0].insert(0, self.desde)
 						dato_salida1 =self.lista_Entry_carton_salida[0]
 						self.salida1= dato_salida1.get()
 
-						self.lista_Entry_carton_salida[1].insert(0, "200")
+						self.lista_Entry_carton_salida[1].insert(0, self.desde)
 						dato_salida2 = self.lista_Entry_carton_salida[1]
 						self.salida2 = dato_salida2.get()
 
-						self.lista_Entry_carton_salida[2].insert(0, "300")
+						self.lista_Entry_carton_salida[2].insert(0, self.desde)
 						dato_salida3 = self.lista_Entry_carton_salida[2]
 						self.salida3 = dato_salida3.get()
 
-						self.lista_Entry_carton_salida[3].insert(0, "600")
+						self.lista_Entry_carton_salida[3].insert(0, self.desde)
 						dato_salida6 = self.lista_Entry_carton_salida[3]
 						self.salida6 = dato_salida6.get()
 
@@ -590,28 +591,15 @@ class VentanaApp:
 
 	def liquidar_partida(self):
 		self.funciones.pico_salida(self.salida1)
-
-		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta)#series_en_liquidacion
+		self.funciones.pico_cierre(self.al)
+		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.impresos)#series_en_liquidacion
 		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
-
-
-
-
-
-
-
-		self.funciones.cartones_en_liquidacion(self.lista_numero_series_liquidacion, self.lista_cartones_liquidacion, self.salida1)
-
-
-
-
-
-
+		self.funciones.cartones_en_liquidacion(self.lista_numero_series_liquidacion, self.lista_cartones_liquidacion, self.salida1, self.al)
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
-		
 
 	def sube_todas_las_series_a_venta(self):
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
+
 	def sube_a_venta_un_rango_2_9(self, indice):
 		self.funciones.sube_a_venta_un_rango_2_9(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta, indice)#series_frame_5
 
@@ -620,8 +608,6 @@ class VentanaApp:
 
 	def decrementar_serie(self, indice): # Funcion que disminuye una serie pulsando el boton bajar del rango elegido
 		self.series_frame_5.decrementar_serie(indice)
-
-	
 
 	def salir(self):
 		self.funciones.salir(self.root)

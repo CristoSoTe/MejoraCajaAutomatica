@@ -33,6 +33,13 @@ class Funciones:
 			destino[indice-1].config(text=contenido_actual)
 
 	#@staticmethod
+
+
+
+
+
+
+
 	def subir_series_a_liquidacion(self, origen, destino, etiqueta_rango1, impresos):
 		self.series_vendidas = (int(impresos) - self.pico_sal - int(self.pico_cie)) // 6
 		contenido_rango1 = etiqueta_rango1.cget("text")
@@ -42,6 +49,24 @@ class Funciones:
 		for label_origen, label_destino in zip(origen, destino[1:9]):
 			contenido_actual = label_origen.cget("text")
 			label_destino.config(text=contenido_actual)
+
+		contenido_rango1_liquidacion = destino[0].cget("text") 
+		primer_elemento_rango1_liquidacion = contenido_rango1_liquidacion.split()[0].strip()
+		total_series_cierre = 0
+		for elemento in destino[1:9]:
+			contenido = elemento.cget("text")
+			total_series_cierre += int(contenido)
+		series_cierre = self.series_vendidas - total_series_cierre - int(primer_elemento_rango1_liquidacion)
+		destino[9].config(text=f"{series_cierre} - { self.pico_sal}")
+
+
+
+
+
+
+
+
+
 
 	def calcula_liquidacion(self, origen, destino, etiqueta_rango1, precio):
 		contenido_rango1 = origen[0].cget("text")

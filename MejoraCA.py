@@ -133,6 +133,7 @@ class VentanaApp:
 
 					elif SubIdentificador == "SubFrameLiquidacion11":
 						subframe.config(bg="#0099ff")
+						tk.Label(subframe, text = "", font=("Times New Roman",20,"bold"), bg="#0099ff").pack()
 						etiqueta_total_liquidacion = tk.Label(subframe, text = "TOTAL", font=("Times New Roman",20,"bold"), bg="#0099ff")
 						etiqueta_total_liquidacion.pack()
 
@@ -143,16 +144,9 @@ class VentanaApp:
 						series_liquidacion_total=tk.Label(subframe, text = "SERIES", font=("Times New Roman", 15,"bold"), bg="#0099ff")
 						series_liquidacion_total.pack()
 
-						self.etiqueta_numero_series_liquidacion_total = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=2)
+						self.etiqueta_numero_series_liquidacion_total = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=3)
 						self.etiqueta_numero_series_liquidacion_total.pack()
 						self.lista_numero_series_liquidacion.append(self.etiqueta_numero_series_liquidacion_total)
-
-						del_al_liquidacion_total=tk.Label(subframe, text = "DEL-AL", font=("Times New Roman", 15,"bold"), bg="#0099ff")
-						del_al_liquidacion_total.pack()
-
-						self.etiqueta_cartones_liquidacion_total = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=8)
-						self.etiqueta_cartones_liquidacion_total.pack()
-						self.lista_cartones_liquidacion.append(self.etiqueta_cartones_liquidacion_total)
 
 					else:
 

@@ -32,14 +32,6 @@ class Funciones:
 			contenido_actual=origen[indice].cget("text")
 			destino[indice-1].config(text=contenido_actual)
 
-	#@staticmethod
-
-
-
-
-
-
-
 	def subir_series_a_liquidacion(self, origen, destino, etiqueta_rango1, impresos):
 		self.series_vendidas = (int(impresos) - self.pico_sal - int(self.pico_cie)) // 6
 		contenido_rango1 = etiqueta_rango1.cget("text")
@@ -57,22 +49,18 @@ class Funciones:
 			contenido = elemento.cget("text")
 			total_series_cierre += int(contenido)
 		series_cierre = self.series_vendidas - total_series_cierre - int(primer_elemento_rango1_liquidacion)
-		destino[9].config(text=f"{series_cierre} - { self.pico_sal}")
-
-
-
-
-
-
-
-
-
+		destino[9].config(text=f"{series_cierre} - { self.pico_cie}")
 
 	def calcula_liquidacion(self, origen, destino, etiqueta_rango1, precio):
 		contenido_rango1 = origen[0].cget("text")
 		primer_elemento_rango1 = contenido_rango1.split()[0].strip()
 		liquidacion_rango1 = ((int(primer_elemento_rango1) * 6) + self.pico_sal) * float(precio)
 		destino[0].config(text=f"{liquidacion_rango1}€")
+
+		contenido_rango10 = origen[9].cget("text")
+		primer_elemento_cierre = contenido_rango10.split()[0].strip()
+		liquidacion_cierre = ((int(primer_elemento_cierre) * 6) + self.pico_cie) * float(precio)
+		destino[9].config(text=f"{liquidacion_cierre}€")
 
 		liquidacion_total = ((self.series_vendidas * 6) + self.pico_cie + self.pico_sal) * float(precio)
 		destino[10].config(text=f"{liquidacion_total}€")
@@ -141,37 +129,6 @@ class Funciones:
 				self.pico_cie = (int(cierre) % 6)
 		except:
 			pass
-
-# def series_cierre():
-# 	totalCar = total_cartones_1()
-# 	pico_salida = pico_salida_1()
-# 	pico_cierre_fin = pico_cierre()
-# 	series_cie = 0
-# 	prueba = 0
-# 	try:
-# 		series_asignadas = int(series_liquidacionr1["text"]) + int(series_liquidacionr2["text"]) + int(series_liquidacionr3["text"]) + int(series_liquidacionr4["text"]) + int(series_liquidacionr5["text"]) + int(series_liquidacionr6["text"]) + int(series_liquidacionr7["text"]) + int(series_liquidacionr8["text"]) + int(series_liquidacionr9["text"]) 
-# 		if SalidaEntry_1.get() == "" or SalidaEntry_1.get() == "0" or CierreTotal.get() == "" or CierreTotal.get() == "0":
-# 			pass
-# 		else:
-# 			if totalCar - pico_salida >= 6 and totalCar - pico_salida  < 12 :
-# 				series_cie = 0
-# 			else:
-# 				series_cie = round((totalCar - pico_salida - pico_cierre_fin) / 6) - series_asignadas
-
-# 		if series_cie < 0:#and pico_cierre_fin < 0
-# 			MessageBox.showinfo(message="Número de series asignadas superior a cartones a la venta\n vuelva a introducir el cierre o baje número de series", title="ATENCION")
-# 			#borrar()
-# 			series_cie = 0
-# 			prueba = 1
-
-# 		if prueba == 1:
-# 			return prueba
-# 		else:
-# 			return series_cie
-# 	except:
-# 		pass
-
-# def series_cierre():
 
 	def salir(self, root):
 		root.destroy()

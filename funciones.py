@@ -108,6 +108,30 @@ class Funciones:
 		else:
 			destino[9].config(text=f"{carton_inicial} - {cierre}")
 
+
+	
+
+
+
+
+	def carton_salida(self, cartonSalida, serie, etiqueta_rango1, salida, precio):
+		indice_series = 0
+		indice_carton = 0
+		# for elemento in serie:
+		# 	if precio == "1.5":
+		serie = etiqueta_rango1.cget("text")
+		salida_rango = (int(serie) * 6) + int(salida)
+
+
+		cartonSalida[indice_carton].config(text=salida_rango)
+
+	
+
+
+
+
+
+
 	def pico_salida(self, salida):
 		try:
 			if salida == 0 or salida == "":

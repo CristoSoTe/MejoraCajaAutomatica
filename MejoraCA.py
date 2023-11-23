@@ -214,7 +214,7 @@ class VentanaApp:
 						valor_fila = 1
 						valor_columna = 0
 
-				self.entradas[0].insert(0, "2")
+				self.entradas[0].insert(0, "1.5")
 				dato_precio =self.entradas[0]
 				self.precio = dato_precio.get()
 
@@ -339,6 +339,7 @@ class VentanaApp:
 							self.etiqueta_carton_salida_cierre.pack()
 							self.lista_carton_salida_cierre.append(self.etiqueta_carton_salida_cierre)
 
+
 							#carton_salida_siguiente_cierre = self.numero_carton_salida_siguiente_cierre[indice_carton_salida_cierre]
 							self.etiqueta_carton_salida_siguiente_cierre = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",15,"bold"), width=4)
 							self.etiqueta_carton_salida_siguiente_cierre.pack(pady=1)
@@ -374,6 +375,7 @@ class VentanaApp:
 							self.etiqueta_carton_salida_2_9 = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
 							self.etiqueta_carton_salida_2_9.pack()
 							self.lista_carton_salida_2_9.append(self.etiqueta_carton_salida_2_9)
+
 
 							#carton_salida_siguiente_2_9 = self.numero_carton_salida_siguiente_2_9[indice_carton_salida]
 							self.etiqueta_carton_salida_siguiente_2_9 = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",15,"bold"), width=4)
@@ -588,12 +590,11 @@ class VentanaApp:
 		self.funciones.pico_salida(self.salida1)
 		self.funciones.pico_cierre(self.al)
 		self.funciones.subir_series_a_liquidacion(self.lista_numero_series_por_rango_venta, self.lista_numero_series_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.impresos)#series_en_liquidacion
-
 		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
-
-
 		self.funciones.cartones_en_liquidacion(self.lista_numero_series_liquidacion, self.lista_cartones_liquidacion, self.salida1, self.al)
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
+		self.funciones.carton_salida(self.lista_carton_salida_2_9, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta, self.salida1, self.precio)
+
 
 	def sube_todas_las_series_a_venta(self):
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5

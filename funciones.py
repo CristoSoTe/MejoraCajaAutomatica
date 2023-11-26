@@ -138,25 +138,25 @@ class Funciones:
 
 
 
-	def carton_salida(self, series, carton, etiqueta_rango1, salida, precio):
-
+	def carton_salida(self, series, carton, salida_cierre, etiqueta_rango1, salida, precio):
+		#-------------------- Carton salida del rango 2 ---------------------------------
 		serie_rango1 = etiqueta_rango1.cget("text")
 		numero_carton = (int(serie_rango1)*6) + int(salida)
 		carton[0].config(text=numero_carton)
 
+		#---------------------Carton salida del rango 3 al 9 -------------------------
 		indice_origen = 0
 		indice_destino = 4
-
-
-		for i in series:
-
+		for i in series[:7]:
 			if series[indice_origen].cget("text") != "0":
 				numero_series = series[indice_origen].cget("text")
-				print(numero_series)
-				numero_carton = int(numero_series) * 6
-				carton[indice_destino].config(text=numero_carton)
+				numero_carton_siguiente = int(numero_series) * 6 + numero_carton 
+				carton[indice_destino].config(text=numero_carton_siguiente)
+				numero_carton = numero_carton_siguiente
 				indice_origen += 1
-				indice_destino += 4 
+				indice_destino += 4
+				carton_salida_cierre=int(series[indice_origen].cget("text")) * 6
+				salida_cierre[0].config(text=numero_carton+carton_salida_cierre) 
 
 
 

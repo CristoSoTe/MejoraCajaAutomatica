@@ -214,7 +214,7 @@ class VentanaApp:
 						valor_fila = 1
 						valor_columna = 0
 
-				self.entradas[0].insert(0, "1.5")
+				self.entradas[0].insert(0, "2")
 				dato_precio =self.entradas[0]
 				self.precio = dato_precio.get()
 
@@ -311,15 +311,15 @@ class VentanaApp:
 						elif self.precio == "2":
 							self.lista_Entry_carton_salida[1].insert(0, self.desde)
 							dato_salida2 = self.lista_Entry_carton_salida[1]
-							self.salida2 = dato_salida2.get()
+							self.salida1 = dato_salida2.get()
 						elif self.precio == "3":
 							self.lista_Entry_carton_salida[2].insert(0, self.desde)
 							dato_salida3 = self.lista_Entry_carton_salida[2]
-							self.salida3 = dato_salida3.get()
+							self.salida1 = dato_salida3.get()
 						elif self.precio == "6":
 							self.lista_Entry_carton_salida[3].insert(0, self.desde)
 							dato_salida6 = self.lista_Entry_carton_salida[3]
-							self.salida6 = dato_salida6.get()
+							self.salida1 = dato_salida6.get()
 
 						etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
 						etiqueta_vacia.pack()

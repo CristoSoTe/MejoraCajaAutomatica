@@ -214,7 +214,7 @@ class VentanaApp:
 						valor_fila = 1
 						valor_columna = 0
 
-				self.entradas[0].insert(0, "3")
+				self.entradas[0].insert(0, "1.5")
 				dato_precio =self.entradas[0]
 				self.precio = dato_precio.get()
 
@@ -300,7 +300,7 @@ class VentanaApp:
 						etiquetas_salidas_venta1.pack()
 
 						for h in range(4):
-							self.Entry_carton_salida = tk.Entry(subframe, text="", fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6, justify="right")
+							self.Entry_carton_salida = tk.Entry(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6, justify="right")
 							self.Entry_carton_salida.pack(pady=20)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
@@ -597,7 +597,15 @@ class VentanaApp:
 
 		
 
-		self.funciones.carton_salida_siguiente(self.lista_series_frame_5, self.lista_carton_salida_2_9, self.lista_carton_salida_cierre, self.lista_Entry_carton_salida)
+		
+
+
+		self.funciones.carton_salida_siguiente(self.lista_series_frame_5, self.lista_carton_salida_siguiente_2_9, self.lista_carton_salida_cierre, self.lista_Entry_carton_salida)
+
+
+
+	
+
 
 
 
@@ -611,6 +619,13 @@ class VentanaApp:
 
 	def incrementar_serie(self, indice): # Funcion que aumenta una serie pulsando el boton subir del rango elegido
 		self.series_frame_5.incrementar_serie(indice)
+
+
+
+
+
+
+		self.funciones.carton_salida_siguiente(self.lista_series_frame_5, self.lista_carton_salida_siguiente_2_9, self.lista_carton_salida_cierre, self.lista_Entry_carton_salida)
 
 	def decrementar_serie(self, indice): # Funcion que disminuye una serie pulsando el boton bajar del rango elegido
 		self.series_frame_5.decrementar_serie(indice)

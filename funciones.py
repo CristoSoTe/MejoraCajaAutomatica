@@ -162,7 +162,7 @@ class Funciones:
 				carton[3].config(text=numero_carton)
 			indice_destino = 7
 
-		# #---------------------Carton salida del rango 3 al 9 -------------------------
+		#---------------------Carton salida del rango 3 al 9 -------------------------
 		indice_origen = 1
 		rango_con_serie = 1
 		for i in series[:7]:
@@ -204,11 +204,58 @@ class Funciones:
 
 
 	def carton_salida_siguiente(self, lista_series, lista_carton_salida, lista_carton_salida_cierre, lista_Entry):
-		contador=0
+		dato_salida1=lista_Entry[0]
+		salida1=dato_salida1.get()
+
+		dato_salida2=lista_Entry[1]
+		salida2=dato_salida2.get()
+
+		dato_salida3=lista_Entry[2]
+		salida3=dato_salida3.get()
+
+		dato_salida6=lista_Entry[3]
+		salida6=dato_salida6.get()
+
+		numero_entry=0
+		salida_segun_precio=0
+
+		#-------------------- Carton salida del rango 2 ---------------------------------
+		serie_rango1 = lista_series[0].cget("text")
+		numero_carton1 = (int(serie_rango1)*6) + int(salida1)
+		numero_carton2 = (int(serie_rango1)*6) + int(salida2)
+		numero_carton3 = (int(serie_rango1)*6) + int(salida3)
+		numero_carton6 = (int(serie_rango1)*6) + int(salida6)
+		lista_carton_salida_rango2 = [numero_carton1, numero_carton2, numero_carton3, numero_carton6]
+		numero_lista=0
+
 		for i in lista_Entry:
-			i.delete(0, END)
-			i.insert(0, contador)
-			contador += 1
+			if lista_series[numero_entry].cget("text") == "0" or lista_series[numero_entry].cget("text") == "":
+				lista_carton_salida[salida_segun_precio].config(text="0")
+			else:
+				lista_carton_salida[salida_segun_precio].config(text=lista_carton_salida_rango2[numero_lista])
+
+			numero_entry += 1
+			salida_segun_precio += 1
+			numero_lista+=1
+
+			#indice_destino = 4
+		#---------------------Carton salida del rango 3 al 9 -------------------------
+
+		# indice_origen = 1
+		# rango_con_serie = 1
+		# for i in series[:7]:
+		# 	if series[indice_origen].cget("text") == "0":
+		# 		carton[indice_destino].config(text="0")
+		# 		indice_origen += 1
+		# 		indice_destino += 4
+		# 		rango_con_serie +=1
+		# 	else:
+		# 		numero_series = series[indice_origen - rango_con_serie].cget("text")
+		# 		numero_carton_siguiente = int(numero_series) * 6 + numero_carton 
+		# 		carton[indice_destino].config(text=numero_carton_siguiente)
+		# 		numero_carton = numero_carton_siguiente
+		# 		indice_origen += 1
+		# 		indice_destino += 4
 
 
 

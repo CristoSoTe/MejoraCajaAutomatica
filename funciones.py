@@ -132,12 +132,6 @@ class Funciones:
 		else:
 			destino[9].config(text=f"{carton_inicial} - {cierre}")
 
-
-	
-
-
-
-
 	def carton_salida(self, series, carton, salida_cierre, etiqueta_rango1, salida, precio):
 
 		#-------------------- Carton salida del rango 2 ---------------------------------
@@ -208,7 +202,14 @@ class Funciones:
 
 
 
-	
+
+	def carton_salida_siguiente(self, lista_series, lista_carton_salida, lista_carton_salida_cierre, lista_Entry):
+		contador=0
+		for i in lista_Entry:
+			i.delete(0, END)
+			i.insert(0, contador)
+			contador += 1
+
 
 
 

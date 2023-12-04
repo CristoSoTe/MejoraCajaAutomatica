@@ -593,7 +593,7 @@ class VentanaApp:
 		self.funciones.calcula_liquidacion(self.lista_numero_series_liquidacion, self.lista_liquidacion, self.etiqueta_numero_series_por_rango1_venta, self.precio)#series_frame_5
 		self.funciones.cartones_en_liquidacion(self.lista_numero_series_liquidacion, self.lista_cartones_liquidacion, self.salida, self.al)
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
-		self.funciones.carton_salida(self.lista_numero_series_por_rango_venta, self.lista_carton_salida_2_9, self.lista_carton_salida_cierre, self.etiqueta_numero_series_por_rango1_venta, self.salida, self.precio)
+		self.funciones.carton_salida(self.lista_numero_series_por_rango_venta, self.lista_carton_salida_2_9, self.lista_carton_salida_cierre, self.etiqueta_numero_series_por_rango1_venta, self.salida, self.precio, self.lista_Entry_carton_salida)
 
 		
 
@@ -611,7 +611,7 @@ class VentanaApp:
 
 	def sube_todas_las_series_a_venta(self):
 		self.funciones.sube_todas_las_series_a_venta(self.lista_series_frame_5, self.lista_numero_series_por_rango_venta, self.etiqueta_numero_series_por_rango1_venta)#series_frame_5
-		self.funciones.carton_salida(self.lista_numero_series_por_rango_venta, self.lista_carton_salida_2_9, self.lista_carton_salida_cierre, self.etiqueta_numero_series_por_rango1_venta, self.salida, self.precio)
+		self.funciones.carton_salida(self.lista_numero_series_por_rango_venta, self.lista_carton_salida_2_9, self.lista_carton_salida_cierre, self.etiqueta_numero_series_por_rango1_venta, self.salida, self.precio, self.lista_Entry_carton_salida)
 
 
 	def sube_a_venta_un_rango_2_9(self, indice):
@@ -626,6 +626,12 @@ class VentanaApp:
 
 
 		self.funciones.carton_salida_siguiente(self.lista_series_frame_5, self.lista_carton_salida_siguiente_2_9, self.lista_carton_salida_cierre, self.lista_Entry_carton_salida)
+
+
+
+
+
+		
 
 	def decrementar_serie(self, indice): # Funcion que disminuye una serie pulsando el boton bajar del rango elegido
 		self.series_frame_5.decrementar_serie(indice)

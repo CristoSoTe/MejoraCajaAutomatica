@@ -214,7 +214,7 @@ class VentanaApp:
 						valor_fila = 1
 						valor_columna = 0
 
-				self.entradas[0].insert(0, "2")
+				self.entradas[0].insert(0, "1.5")
 				dato_precio =self.entradas[0]
 				self.precio = dato_precio.get()
 
@@ -299,26 +299,39 @@ class VentanaApp:
 						etiquetas_salidas_venta1.pack()
 
 						for h in range(4):
-							self.Entry_carton_salida = tk.Entry(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6, justify="right")
+							self.Entry_carton_salida = tk.Entry(subframe, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6, justify="right")
 							self.Entry_carton_salida.pack(pady=20)
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
-						if self.precio == "1.5":
-							self.lista_Entry_carton_salida[0].insert(0, "Hola")
-							dato_salida =self.lista_Entry_carton_salida[0]
-							self.salida= dato_salida.get()
-						elif self.precio == "2":
-							self.lista_Entry_carton_salida[1].insert(0, "Hola1")
-							dato_salida = self.lista_Entry_carton_salida[1]
-							self.salida = dato_salida.get()
-						elif self.precio == "3":
-							self.lista_Entry_carton_salida[2].insert(0, "Hola2")
-							dato_salida = self.lista_Entry_carton_salida[2]
-							self.salida = dato_salida.get()
-						elif self.precio == "6":
-							self.lista_Entry_carton_salida[3].insert(0, "Hola3")
-							dato_salida = self.lista_Entry_carton_salida[3]
-							self.salida = dato_salida.get()
+						prueba_salida = 700
+						for i in range(3):
+							self.lista_Entry_carton_salida[i].insert(0, prueba_salida)
+							prueba_salida += 200
+
+						self.lista_Entry_carton_salida[3].insert(0, "0")
+
+						# if self.precio == "1.5":
+						# 	self.lista_Entry_carton_salida[0].delete(0)
+						# 	self.lista_Entry_carton_salida[0].insert(0, "500")#self.desde
+						# 	dato_salida =self.lista_Entry_carton_salida[0]
+						# 	self.salida= dato_salida.get()
+						# elif self.precio == "2":
+						# 	self.lista_Entry_carton_salida[1].delete(0)
+						# 	self.lista_Entry_carton_salida[1].insert(0, self.desde)#self.desde
+						# 	dato_salida = self.lista_Entry_carton_salida[1]
+						# 	self.salida = dato_salida.get()
+						# elif self.precio == "3":
+						# 	self.lista_Entry_carton_salida[2].delete(0)
+						# 	self.lista_Entry_carton_salida[2].insert(0, self.desde)#self.desde
+						# 	dato_salida = self.lista_Entry_carton_salida[2]
+						# 	self.salida = dato_salida.get()
+						# elif self.precio == 6:
+						# 	self.lista_Entry_carton_salida[3].delete(0)
+						# 	self.lista_Entry_carton_salida[3].insert(0, self.desde)#self.desde
+						# 	dato_salida = self.lista_Entry_carton_salida[3]
+						# 	self.salida = dato_salida.get()
+						self.salida="hola"
+
 
 						etiqueta_vacia = tk.Label(subframe, text="", font=("Times New Roman",4,"bold"), bg="#00FFFF")
 						etiqueta_vacia.pack()

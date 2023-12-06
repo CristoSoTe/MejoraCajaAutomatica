@@ -87,7 +87,7 @@ class VentanaApp:
 
 					if SubIdentificador == "SubFrameLiquidacion1":
 						subframe.config(bg="#00FFFF")
-						self.etiqueta_numero_rango1_liquidacion = tk.Label(subframe, text = "RANGO1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
+						self.etiqueta_numero_rango1_liquidacion = tk.Label(subframe, text = "RANGO 1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_numero_rango1_liquidacion.pack()
 
 						self.etiqueta_liquidacion_rango1 = tk.Label(subframe, text=0, fg="blue", bg = "white", font=("Times New Roman",17,"bold"), width=6)
@@ -286,7 +286,7 @@ class VentanaApp:
 
 					elif subIdentificador == "SubFrameVenta2":
 						subframe.config(bg="#00FFFF")
-						self.etiqueta_numero_rango1_venta = tk.Label(subframe, text = "RANGO1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
+						self.etiqueta_numero_rango1_venta = tk.Label(subframe, text = "RANGO 1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_numero_rango1_venta.pack()
 						indice_carton_salida_inicial = 0
 

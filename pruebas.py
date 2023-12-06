@@ -1,66 +1,25 @@
-def carton_salida(self, series, carton, salida_cierre, etiqueta_rango1, salida, precio):
+import tkinter as tk
 
-        #-------------------- Carton salida del rango 2 ---------------------------------
-        serie_rango1 = etiqueta_rango1.cget("text")
-        numero_carton = (int(serie_rango1)*6) + int(salida)
-        if precio == "1.5":
-            if series[0].cget("text") == "0":
-                carton[0].config(text="0")
-            else:
-                carton[0].config(text=numero_carton)
-            indice_destino = 4
-        elif precio == "2":
-            if series[0].cget("text") == "0":
-                carton[1].config(text="0")
-            else:
-                carton[1].config(text=numero_carton)
-            indice_destino = 5
-        elif precio == "3":
-            if series[0].cget("text") == "0":
-                carton[2].config(text="0")
-            else:
-                carton[2].config(text=numero_carton)
-            indice_destino = 6
-        else:
-            if series[0].cget("text") == "0":
-                carton[3].config(text="0")
-            else:
-                carton[3].config(text=numero_carton)
-            indice_destino = 7
+class TuClase:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.precio="2"
+        self.lista_Entry_carton_salida = []
 
-        # #---------------------Carton salida del rango 3 al 9 -------------------------
-        indice_origen = 1
-        rango_con_serie = 1
-        for i in series[:7]:
-            if series[indice_origen].cget("text") == "0":
-                carton[indice_destino].config(text="0")
-                indice_origen += 1
-                indice_destino += 4
-                rango_con_serie +=1
-            else:
-                numero_series = series[indice_origen - rango_con_serie].cget("text")
-                numero_carton_siguiente = int(numero_series) * 6 + numero_carton 
-                carton[indice_destino].config(text=numero_carton_siguiente)
-                numero_carton = numero_carton_siguiente
-                indice_origen += 1
-                indice_destino += 4
+        for h in range(4):
+            self.Entry_carton_salida = tk.Entry(self.root, fg="blue", bg="white", font=("Times New Roman", 17, "bold"), width=6, justify="right")
+            self.Entry_carton_salida.pack(pady=20)
+            self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
-                #-------------- Carton salida del cierre ----------------------------
-                if precio == "1.5":
-                    ultima_serie = series[indice_origen - 1].cget("text")
-                    carton_salida_cierre= (int(ultima_serie) * 6) + numero_carton_siguiente
-                    salida_cierre[0].config(text=carton_salida_cierre)
-                elif precio== "2":
-                    ultima_serie = series[indice_origen - 1].cget("text")
-                    carton_salida_cierre= (int(ultima_serie) * 6) + numero_carton_siguiente
-                    salida_cierre[1].config(text=carton_salida_cierre)
-                elif precio== "3":
-                    ultima_serie = series[indice_origen - 1].cget("text")
-                    carton_salida_cierre= (int(ultima_serie) * 6) + numero_carton_siguiente
-                    salida_cierre[2].config(text=carton_salida_cierre)
-                else:
-                    ultima_serie = series[indice_origen - 1].cget("text")
-                    carton_salida_cierre= (int(ultima_serie) * 6) + numero_carton_siguiente
-                    salida_cierre[3].config(text=carton_salida_cierre)
+        # Asignar "2" al primer Entry (índice 0)
+        if self.precio == "2":
+            self.lista_Entry_carton_salida[0].insert(0, "2")
 
-                rango_con_serie = 1
+        # Asignar "3" al cuarto Entry (índice 3)
+        elif self.precio != "2":
+            self.lista_Entry_carton_salida[3].insert(0, "3")
+
+        self.root.mainloop()
+
+# Crear una instancia de TuClase
+app = TuClase()

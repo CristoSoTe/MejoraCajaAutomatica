@@ -214,7 +214,7 @@ class VentanaApp:
 						valor_fila = 1
 						valor_columna = 0
 
-				self.entradas[0].insert(0, "1.5")
+				self.entradas[0].insert(0, "2")
 				dato_precio =self.entradas[0]
 				self.precio = dato_precio.get()
 
@@ -288,7 +288,6 @@ class VentanaApp:
 						subframe.config(bg="#00FFFF")
 						self.etiqueta_numero_rango1_venta = tk.Label(subframe, text = "RANGO 1", font=("Times New Roman",20,"bold"), bg="#00FFFF", fg="#009900")
 						self.etiqueta_numero_rango1_venta.pack()
-						indice_carton_salida_inicial = 0
 
 						etiquetas_series_venta=tk.Label(subframe, text = "SERIES", font=("Times New Roman", 15,"bold"), bg="#00FFFF")
 						etiquetas_series_venta.pack()
@@ -305,19 +304,19 @@ class VentanaApp:
 							self.lista_Entry_carton_salida.append(self.Entry_carton_salida)
 
 						if self.precio == "1.5":
-							self.lista_Entry_carton_salida[0].insert(0, self.desde)
+							self.lista_Entry_carton_salida[0].insert(0, "Hola")
 							dato_salida =self.lista_Entry_carton_salida[0]
 							self.salida= dato_salida.get()
 						elif self.precio == "2":
-							self.lista_Entry_carton_salida[1].insert(0, self.desde)
+							self.lista_Entry_carton_salida[1].insert(0, "Hola1")
 							dato_salida = self.lista_Entry_carton_salida[1]
 							self.salida = dato_salida.get()
 						elif self.precio == "3":
-							self.lista_Entry_carton_salida[2].insert(0, self.desde)
+							self.lista_Entry_carton_salida[2].insert(0, "Hola2")
 							dato_salida = self.lista_Entry_carton_salida[2]
 							self.salida = dato_salida.get()
 						elif self.precio == "6":
-							self.lista_Entry_carton_salida[3].insert(0, self.desde)
+							self.lista_Entry_carton_salida[3].insert(0, "Hola3")
 							dato_salida = self.lista_Entry_carton_salida[3]
 							self.salida = dato_salida.get()
 
